@@ -5,6 +5,9 @@ import java.text.NumberFormat;
 
 /**
  * 格式化
+ * 这里有三种格式化的方式，分别为Number,String和DecimalFormat
+ * 此外，还有DateFormat的格式化
+ * 格式化也是一个比较大的门类。
  * @author ASUS
  *
  */
