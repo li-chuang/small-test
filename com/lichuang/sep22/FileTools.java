@@ -134,7 +134,12 @@ public class FileTools {
 	 * @return
 	 */
 	public static long du(File file, boolean loop) {
-		FileChannel fileChannel = null; //使用FileChannel的理由是此类可以将整个文件都缓存掉
+		//使用FileChannel的理由是此类可以将整个文件都缓存掉
+		//除此之外，使用File下的length()方法也是可行的
+		//获取文件大小时注意一个隐藏的bug,InputStream未进行read操作时，available()貌似也可以，
+		//不过available()返回值为int，最大表示出2G的大小，再大一些就完蛋了
+		//size()和length()都返回long，不会有这个顾虑
+		FileChannel fileChannel = null; 
 		long size = 0;
 		try {
 			if (!file.exists()) {
@@ -144,6 +149,7 @@ public class FileTools {
 				FileInputStream fis = new FileInputStream(file);
 				fileChannel = fis.getChannel();
 				size = fileChannel.size();
+				//size = file.length();
 			} else if (file.isDirectory()) {
 				File[] files = file.listFiles();
 				int length = files.length;
@@ -168,6 +174,11 @@ public class FileTools {
 		}
 		return size;
 	}
+	
+	public static void main(String[] args) {
+		System.out.println(du("E:\\李闯.rar",true)/(1024.0*1024*1024));
+	}
 
 }
+
 
