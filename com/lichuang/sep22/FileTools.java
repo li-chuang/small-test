@@ -128,13 +128,13 @@ public class FileTools {
 
 	/**
 	 * du 获取文件实际大小
-	 * 
+	 *    真正有效获取文件大小的就只有这个方法，其他的都是对这个方法的引用和包装
 	 * @param file
 	 * @param loop
 	 * @return
 	 */
 	public static long du(File file, boolean loop) {
-		FileChannel fileChannel = null;
+		FileChannel fileChannel = null; //使用FileChannel的理由是此类可以将整个文件都缓存掉
 		long size = 0;
 		try {
 			if (!file.exists()) {
@@ -170,3 +170,4 @@ public class FileTools {
 	}
 
 }
+
