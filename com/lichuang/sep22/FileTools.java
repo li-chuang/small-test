@@ -176,7 +176,7 @@ public class FileTools {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(du("E:\\李闯.rar",true)/(1024.0*1024*1024));
+		System.out.println(du("E:\\lich.rar",true)/(1024.0*1024*1024));
 	}
 
 }
