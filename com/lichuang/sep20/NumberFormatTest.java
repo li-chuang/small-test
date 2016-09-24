@@ -48,6 +48,7 @@ public class NumberFormatTest {
         return df.format(intHao);
     }
     
+    // 这里是DecimalFormat的标准用法：NumberFormat代入语言环境，DecimalFormat负责格式化
     public static String standardDecimalFormat(double number){
     	NumberFormat nf = NumberFormat.getInstance(Locale.CHINA);
     	DecimalFormat df = (DecimalFormat) nf;
