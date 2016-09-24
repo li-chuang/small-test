@@ -12,7 +12,7 @@ import java.util.Locale;
 public class NumberFormatTest {
 
 	public static void main(String[] args){
-		System.out.println(standardDecimalFormat(12345.6789));
+		System.out.println(standardDecimalFormat(12345.6789,",###.000%"));
 	}
 	
 	// NumberFormat类的使用，实际用途与SimpleDateFormat相似，但也有不同。
@@ -48,13 +48,13 @@ public class NumberFormatTest {
         return df.format(intHao);
     }
     
-    // 这里是DecimalFormat的标准用法：NumberFormat代入语言环境，DecimalFormat负责格式化
-    public static String standardDecimalFormat(double number){
+    public static String standardDecimalFormat(double number,String pattern){
     	NumberFormat nf = NumberFormat.getInstance(Locale.CHINA);
     	DecimalFormat df = (DecimalFormat) nf;
-    	df.applyPattern(",###.00");
+    	df.applyPattern(pattern);
     	return df.format(number);
     }
 	
 }
+
 
