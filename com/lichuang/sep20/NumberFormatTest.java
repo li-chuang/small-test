@@ -2,19 +2,17 @@ package com.lichuang.Sep20;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.Locale;
 
 /**
  * 格式化
- * 这里有三种格式化的方式，分别为Number,String和DecimalFormat
- * 此外，还有DateFormat的格式化
- * 格式化也是一个比较大的门类。
  * @author ASUS
  *
  */
 public class NumberFormatTest {
 
 	public static void main(String[] args){
-		System.out.println(decimalFormat("120"));
+		System.out.println(standardDecimalFormat(12345.6789));
 	}
 	
 	// NumberFormat类的使用，实际用途与SimpleDateFormat相似，但也有不同。
@@ -49,5 +47,13 @@ public class NumberFormatTest {
         DecimalFormat df = new DecimalFormat(STR_FORMAT);
         return df.format(intHao);
     }
+    
+    public static String standardDecimalFormat(double number){
+    	NumberFormat nf = NumberFormat.getInstance(Locale.CHINA);
+    	DecimalFormat df = (DecimalFormat) nf;
+    	df.applyPattern(",###.00");
+    	return df.format(number);
+    }
 	
 }
+
