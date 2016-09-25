@@ -34,6 +34,7 @@ public class FileUtils {
 		createDirectory(new File(filePath));
 	}
 	
+	//在指定的路径下创造目录
 	public static void createDirectory(String destName, String fileName){
 		createDirectory(new File(destName + fileName));
 	}
