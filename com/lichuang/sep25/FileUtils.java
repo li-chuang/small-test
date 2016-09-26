@@ -1,7 +1,9 @@
 package com.lichuang.Sep25;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.channels.FileChannel;
 
 /**
  * 文件辅助类 : 1.获取文件实际大小 ; 2.文件复制 ; 3.文件夹复制; 4.文件删除 ; 5.文件夹删除 ; 6.文件重命名 ; 7.文件移动;
@@ -19,12 +21,14 @@ public class FileUtils {
 		// createDirectory(new File("hello"));
 		// createDirectory("world");
 		// createDirectory("E:\\", "lichuang\\hello");
-		//System.out.println(fileSize(new File("F:\\jfsky_yingbi.rar"))/1024);
-		System.out.println(fileSize(new File("F:\\war3"))/(1024*1024.0));
+		// System.out.println(fileSize(new File("F:\\jfsky_yingbi.rar"))/1024);
+		// System.out.println(fileSize(new File("F:\\war3"))/(1024*1024.0*1024));
+		System.out.println(fileSize("F:\\war3")/(1024*1024.0*1024));
 	}
-	
+
 	/**
 	 * 1.获取文件实际大小
+	 *   对目录，则循环向下获取，取总值
 	 */
 	public static long fileSize(File file) {
 		FileChannel fileChannel = null;
@@ -61,26 +65,29 @@ public class FileUtils {
 		}
 		return size;
 	}
+	
+	public static long fileSize(String fileName){
+		return fileSize(new File(fileName));
+	}
 
 	/**
-	 * 创建目录
+	 * 14.创建目录
 	 */
-	public static void createDirectory(File file){
-		if(!file.exists()){
+	public static void createDirectory(File file) {
+		if (!file.exists()) {
 			file.mkdirs();
 		}
 	}
-	
-	public static void createDirectory(String filePath){
+
+	public static void createDirectory(String filePath) {
 		createDirectory(new File(filePath));
 	}
-	
-	//在指定的路径下创造目录
-	public static void createDirectory(String destName, String fileName){
+
+	// 在指定的路径下创造目录
+	public static void createDirectory(String destName, String fileName) {
 		createDirectory(new File(destName + fileName));
 	}
-	
-	
+
 	/**
 	 * 15.创建文件 如果文件不存在，则创建
 	 */
