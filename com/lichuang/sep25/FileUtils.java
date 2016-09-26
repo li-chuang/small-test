@@ -42,7 +42,7 @@ public class FileUtils {
 				int length = files.length;
 				for(int i=0;i<length;i++){
 					if(files[i].isDirectory()){
-						fileSize(files[i]);
+						size += fileSize(files[i]);
 					} else {
 						size += fileSize(files[i]);
 					}
