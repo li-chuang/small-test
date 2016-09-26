@@ -18,7 +18,48 @@ public class FileUtils {
 		// createFile("E:\\", "lichuang.txt");
 		// createDirectory(new File("hello"));
 		// createDirectory("world");
-		createDirectory("E:\\", "lichuang\\hello");
+		// createDirectory("E:\\", "lichuang\\hello");
+		//System.out.println(fileSize(new File("F:\\jfsky_yingbi.rar"))/1024);
+		System.out.println(fileSize(new File("F:\\war3")));
+	}
+	
+	/**
+	 * 1.获取文件实际大小
+	 */
+	public static long fileSize(File file) {
+		FileChannel fileChannel = null;
+		long size = 0L;
+		try {
+			if (!file.exists()) {
+				throw new Exception("此文件不存在！！");
+			}
+			if(file.isFile()){
+				FileInputStream fis = new FileInputStream(file);
+				fileChannel = fis.getChannel();
+				size = fileChannel.size();
+			} else if(file.isDirectory()){
+				File[] files = file.listFiles();
+				int length = files.length;
+				for(int i=0;i<length;i++){
+					if(files[i].isDirectory()){
+						fileSize(files[i]);
+					} else {
+						size += fileSize(files[i]);
+					}
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			if(fileChannel !=null){
+				try {
+					fileChannel.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return size;
 	}
 
 	/**
