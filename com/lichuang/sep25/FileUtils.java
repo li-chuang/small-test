@@ -20,7 +20,7 @@ public class FileUtils {
 		// createDirectory("world");
 		// createDirectory("E:\\", "lichuang\\hello");
 		//System.out.println(fileSize(new File("F:\\jfsky_yingbi.rar"))/1024);
-		System.out.println(fileSize(new File("F:\\war3")));
+		System.out.println(fileSize(new File("F:\\war3"))/(1024*1024.0));
 	}
 	
 	/**
