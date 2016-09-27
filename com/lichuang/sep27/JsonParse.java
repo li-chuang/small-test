@@ -62,7 +62,7 @@ public class JsonParse {
 	}
 	
 	// 这里是一种新的思路，用堆栈解决
-	public static Map<String,Object> jsonParse2(String jsonStr){
+	public static Map<String,Object> parseStrToJson(String jsonStr){
 		Map<String,Object> jsonMap = new HashMap<String,Object>();
 		
 		return jsonMap;
