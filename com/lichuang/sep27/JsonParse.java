@@ -61,12 +61,14 @@ public class JsonParse {
 		return jsonMap;
 	}
 	
+	// 这里是一种新的思路，用堆栈解决
 	public static Map<String,Object> jsonParse2(String jsonStr){
 		Map<String,Object> jsonMap = new HashMap<String,Object>();
 		
 		return jsonMap;
 	}
 	
+	// 自定义堆栈
 	class MyStack{
 		private int index = 0;
 		private char[] data = new char[10];
