@@ -60,5 +60,26 @@ public class JsonParse {
 		}
 		return jsonMap;
 	}
+	
+	public static Map<String,Object> jsonParse2(String jsonStr){
+		Map<String,Object> jsonMap = new HashMap<String,Object>();
+		
+		return jsonMap;
+	}
+	
+	class MyStack{
+		private int index = 0;
+		private char[] data = new char[10];
+		public void push(char c){
+			data[index] = c;
+		}
+		public char pop(){
+			index--;
+			return data[index];			
+		}
+		public int getIndex(){
+			return index;
+		}
+	}
 
 }
