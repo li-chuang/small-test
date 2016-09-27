@@ -22,6 +22,8 @@ public class JsonParse {
 	}
 
 	// 普通JSON数据解析
+	
+	//分隔这个思路似乎不对，实际上不好分隔，还不如使用堆栈，遇到对应的则弹出
 	public static Map parseJson(String strJson) {
 		String result = "";
 		Map jsonMap = new HashMap();
