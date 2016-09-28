@@ -75,8 +75,6 @@ public class FileUtils {
 	 * 2.文件复制
 	 */
 	public static File copyFile(File source, File destination) {
-//		FileInputStream in = null;
-//		FileOutputStream out = null;
 		FileChannel inc = null;
 		FileChannel outc = null;
 		try {
