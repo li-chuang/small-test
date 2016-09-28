@@ -23,7 +23,8 @@ public class FileUtils {
 		// createDirectory("E:\\", "lichuang\\hello");
 		// System.out.println(fileSize(new File("F:\\jfsky_yingbi.rar"))/1024);
 		// System.out.println(fileSize(new File("F:\\war3"))/(1024*1024.0*1024));
-		System.out.println(fileSize("F:\\war3")/(1024*1024.0*1024));
+		// System.out.println(fileSize("F:\\war3")/(1024*1024.0*1024));
+		copyFile(new File("F:\\jfsky_yingbi.rar"),new File("E:\\jfsky_yingbi.rar"));
 	}
 
 	/**
@@ -70,6 +71,38 @@ public class FileUtils {
 		return fileSize(new File(fileName));
 	}
 
+	/**
+	 * 2.文件复制
+	 */
+	public static File copyFile(File source, File destination) {
+//		FileInputStream in = null;
+//		FileOutputStream out = null;
+		FileChannel inc = null;
+		FileChannel outc = null;
+		try {
+			if (!source.exists() || source.isDirectory()) {
+				throw new Exception("文件不存在！");
+			}
+			if(source.getPath().equals(destination.getPath())){
+				return source;
+			}
+			if(!destination.exists()){
+				destination.createNewFile();
+			}
+			inc = new FileInputStream(source).getChannel();
+			outc = new FileOutputStream(destination).getChannel();
+			ByteBuffer buf = ByteBuffer.allocate(1024);
+			while(inc.read(buf)!=-1){
+				buf.flip();
+				outc.write(buf);
+				buf.clear();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	/**
 	 * 14.创建目录
 	 */
