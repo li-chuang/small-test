@@ -73,6 +73,7 @@ public class FileUtils {
 
 	/**
 	 * 2.文件复制
+	 *   注意NIO的使用
 	 */
 	public static File copyFile(File source, File destination) {
 		FileChannel inc = null;
@@ -87,13 +88,16 @@ public class FileUtils {
 			if(!destination.exists()){
 				destination.createNewFile();
 			}
+			// 得到对应源文件的输入通道
 			inc = new FileInputStream(source).getChannel();
+			// 得到对应目标文件的输出通道
 			outc = new FileOutputStream(destination).getChannel();
+			// 生成1024字节的ByteBuffer实例
 			ByteBuffer buf = ByteBuffer.allocate(1024);
 			while(inc.read(buf)!=-1){
-				buf.flip();
-				outc.write(buf);
-				buf.clear();
+				buf.flip(); // 准备写
+				outc.write(buf); 
+				buf.clear(); //准备读
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
