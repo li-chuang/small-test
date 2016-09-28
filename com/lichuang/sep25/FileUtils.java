@@ -94,7 +94,7 @@ public class FileUtils {
 			outc = new FileOutputStream(destination).getChannel();
 			// 生成1024字节的ByteBuffer实例
 			ByteBuffer buf = ByteBuffer.allocate(1024);
-			while(inc.read(buf)!=-1){
+			while(inc.read(buf)!=-1){	// 其实，即是不用NIO，完文件复制也是读与写的问题
 				buf.flip(); // 准备写
 				outc.write(buf); 
 				buf.clear(); //准备读
@@ -103,6 +103,13 @@ public class FileUtils {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public static File copyFile(String source,String destination){
+		File src = new File(source);
+		File dest = new File(destination);
+		dest = copyFile(src,dest);
+		return dest;
 	}
 	
 	/**
