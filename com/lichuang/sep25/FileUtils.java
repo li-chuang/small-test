@@ -2,8 +2,12 @@ package com.lichuang.Sep25;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 文件辅助类 : 1.获取文件实际大小 ; 2.文件复制 ; 3.文件夹复制; 4.文件删除 ; 5.文件夹删除 ; 6.文件重命名 ; 7.文件移动;
@@ -22,14 +26,16 @@ public class FileUtils {
 		// createDirectory("world");
 		// createDirectory("E:\\", "lichuang\\hello");
 		// System.out.println(fileSize(new File("F:\\jfsky_yingbi.rar"))/1024);
-		// System.out.println(fileSize(new File("F:\\war3"))/(1024*1024.0*1024));
-		// System.out.println(fileSize("F:\\war3")/(1024*1024.0*1024));
-		copyFile(new File("F:\\jfsky_yingbi.rar"),new File("E:\\jfsky_yingbi.rar"));
+		// System.out.println(fileSize(new
+		// File("F:\\war3"))/(1024*1024.0*1024));
+		// System.out.println(fileSize("F:\\war3") / (1024 * 1024.0 * 1024));
+		// copyFile(new File("F:\\jfsky_yingbi.rar"),new
+		// File("E:\\jfsky_yingbi.rar"));
+		copyFile(new File("F:\\Hearthstone"), new File("E:\\Hearthstone"));
 	}
 
 	/**
-	 * 1.获取文件实际大小
-	 *   对目录，则循环向下获取，取总值
+	 * 1.获取文件实际大小 对目录，则循环向下获取，取总值
 	 */
 	public static long fileSize(File file) {
 		FileChannel fileChannel = null;
@@ -38,15 +44,15 @@ public class FileUtils {
 			if (!file.exists()) {
 				throw new Exception("此文件不存在！！");
 			}
-			if(file.isFile()){
+			if (file.isFile()) {
 				FileInputStream fis = new FileInputStream(file);
 				fileChannel = fis.getChannel();
 				size = fileChannel.size();
-			} else if(file.isDirectory()){
+			} else if (file.isDirectory()) {
 				File[] files = file.listFiles();
 				int length = files.length;
-				for(int i=0;i<length;i++){
-					if(files[i].isDirectory()){
+				for (int i = 0; i < length; i++) {
+					if (files[i].isDirectory()) {
 						size += fileSize(files[i]);
 					} else {
 						size += fileSize(files[i]);
@@ -55,8 +61,8 @@ public class FileUtils {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally{
-			if(fileChannel !=null){
+		} finally {
+			if (fileChannel != null) {
 				try {
 					fileChannel.close();
 				} catch (IOException e) {
@@ -66,14 +72,13 @@ public class FileUtils {
 		}
 		return size;
 	}
-	
-	public static long fileSize(String fileName){
+
+	public static long fileSize(String fileName) {
 		return fileSize(new File(fileName));
 	}
 
 	/**
-	 * 2.文件复制
-	 *   注意NIO的使用
+	 * 2.文件复制 注意NIO的使用
 	 */
 	public static File copyFile(File source, File destination) {
 		FileChannel inc = null;
@@ -82,10 +87,10 @@ public class FileUtils {
 			if (!source.exists() || source.isDirectory()) {
 				throw new Exception("文件不存在！");
 			}
-			if(source.getPath().equals(destination.getPath())){
+			if (source.getPath().equals(destination.getPath())) {
 				return source;
 			}
-			if(!destination.exists()){
+			if (!destination.exists()) {
 				destination.createNewFile();
 			}
 			// 得到对应源文件的输入通道
@@ -94,24 +99,49 @@ public class FileUtils {
 			outc = new FileOutputStream(destination).getChannel();
 			// 生成1024字节的ByteBuffer实例
 			ByteBuffer buf = ByteBuffer.allocate(1024);
-			while(inc.read(buf)!=-1){	// 其实，即是不用NIO，完文件复制也是读与写的问题
+			while (inc.read(buf) != -1) { // 其实，即是不用NIO，完文件复制也是读与写的问题
 				buf.flip(); // 准备写
-				outc.write(buf); 
-				buf.clear(); //准备读
+				outc.write(buf);
+				buf.clear(); // 准备读
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				if (inc != null) {
+					inc.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				if (outc != null) {
+					try {
+						outc.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
 		}
 		return null;
 	}
-	
-	public static File copyFile(String source,String destination){
+
+	public static File copyFile(String source, String destination) {
 		File src = new File(source);
 		File dest = new File(destination);
-		dest = copyFile(src,dest);
+		dest = copyFile(src, dest);
 		return dest;
 	}
-	
+
+	/**
+	 * 3.文件夹复制
+	 */
+	public static List<File> copyFiles(String source, String destination) {
+		List<File> list = new ArrayList<File>();
+
+		return null;
+	}
+
 	/**
 	 * 14.创建目录
 	 */
@@ -152,3 +182,4 @@ public class FileUtils {
 		createFile(new File(destName + fileName));
 	}
 }
+
