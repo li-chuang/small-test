@@ -31,7 +31,8 @@ public class FileUtils {
 		// System.out.println(fileSize("F:\\war3") / (1024 * 1024.0 * 1024));
 		// copyFile(new File("F:\\jfsky_yingbi.rar"),new
 		// File("E:\\jfsky_yingbi.rar"));
-		copyFiles(new File("F:\\hello"), new File("E:\\hello"));
+		// copyFiles(new File("F:\\hello"), new File("E:\\hello"));
+		copyFiles("F:\\hello", "E:\\hello");
 	}
 
 	/**
@@ -137,7 +138,6 @@ public class FileUtils {
 	 * 3.文件夹复制
 	 */
 	public static void copyFiles(File source, File destination) {
-		//List<File> list = new ArrayList<File>();
 		try {
 			if (!source.exists()) {				
 				throw new Exception("文件夹不存在！");
@@ -164,7 +164,12 @@ public class FileUtils {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		//return null;
+	}
+	
+	public static void copyFiles(String source,String destination){
+		File src = new File(source);
+		File dest = new File(destination);
+		copyFiles(src,dest);
 	}
 
 	/**
@@ -207,3 +212,4 @@ public class FileUtils {
 		createFile(new File(destName + fileName));
 	}
 }
+
