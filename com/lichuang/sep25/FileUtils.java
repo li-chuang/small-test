@@ -31,7 +31,7 @@ public class FileUtils {
 		// System.out.println(fileSize("F:\\war3") / (1024 * 1024.0 * 1024));
 		// copyFile(new File("F:\\jfsky_yingbi.rar"),new
 		// File("E:\\jfsky_yingbi.rar"));
-		copyFile(new File("F:\\Hearthstone"), new File("E:\\Hearthstone"));
+		copyFiles(new File("F:\\hello"), new File("E:\\hello"));
 	}
 
 	/**
@@ -136,10 +136,35 @@ public class FileUtils {
 	/**
 	 * 3.文件夹复制
 	 */
-	public static List<File> copyFiles(String source, String destination) {
-		List<File> list = new ArrayList<File>();
-
-		return null;
+	public static void copyFiles(File source, File destination) {
+		//List<File> list = new ArrayList<File>();
+		try {
+			if (!source.exists()) {				
+				throw new Exception("文件夹不存在！");
+			}
+			// 注意，让目的地址先建立起来很重要，不然会发生找不到路径的错误
+			if(!destination.exists()){
+				destination.mkdirs();
+			}
+			if(source.isDirectory()){
+				String[] files = source.list();
+				int length = files.length;
+				for(int i=0;i<length;i++){
+					String src = source.getPath()+"\\"+files[i];
+					String dest = destination.getPath()+"\\"+files[i];
+					System.out.println(src +"\n"+dest);
+					File subFile = new File(src);
+					if(subFile.isDirectory()){						
+						copyFiles(subFile,new File(dest));
+					}else {
+						copyFile(subFile,new File(dest));
+					}
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		//return null;
 	}
 
 	/**
@@ -182,4 +207,3 @@ public class FileUtils {
 		createFile(new File(destName + fileName));
 	}
 }
-
