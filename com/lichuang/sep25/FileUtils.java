@@ -241,6 +241,32 @@ public class FileUtils {
 			}
 		}
 	}
+	
+	/**
+	 * 7.文件移动
+	 * 注意：文件移动，如果路径一致，相当于重开一个副本；如果路径不一致，直接重命名就可以了
+	 * 重命名不仅仅是对文件的名字起作用，对文件的路径等都是有效的
+	 */
+	public static void moveFile(File source,File destination){
+			try {
+				if(!source.exists()){
+					throw new Exception("文件不存在！");
+				}
+				StringBuilder fileName =new StringBuilder(source.getName());
+				if(source.getPath().equals(destination.getPath())){
+					if(fileName.indexOf(".") > 0){
+						fileName.insert(fileName.lastIndexOf("."), "_副本");
+					} else {
+						fileName.append("_副本");
+					}
+					copyFile(source, new File(source.getParent() +"\\"+ fileName));
+				} else {
+					source.renameTo(destination);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	}
 
 	/**
 	 * 14.创建目录
