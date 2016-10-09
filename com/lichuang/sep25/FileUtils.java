@@ -35,7 +35,8 @@ public class FileUtils {
 		// copyFiles("F:\\hello", "E:\\hello");
 		// removeFile(new File("F:\\ed4c355a11ef197d0a9e519f3dd65325.jpg"));
 		// removeFolder(new File("F:\\www - 副本"));
-		rename(new File("F:\\logFile_1.txt"),new File("F:\\logFile_2.txt"));
+		// rename(new File("F:\\logFile_1.txt"),new File("F:\\logFile_2.txt"));
+		moveFile(new File("F:\\logFile_2_副本.txt"),new File("E:\\logFile_2.txt"));
 	}
 
 	/**
