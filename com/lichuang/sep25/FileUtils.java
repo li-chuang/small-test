@@ -32,7 +32,7 @@ public class FileUtils {
 		// copyFile(new File("F:\\jfsky_yingbi.rar"),new
 		// File("E:\\jfsky_yingbi.rar"));
 		// copyFiles(new File("F:\\hello"), new File("E:\\hello"));
-		copyFiles("F:\\hello", "E:\\hello");
+		// copyFiles("F:\\hello", "E:\\hello");
 	}
 
 	/**
