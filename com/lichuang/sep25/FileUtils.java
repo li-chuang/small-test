@@ -226,6 +226,20 @@ public class FileUtils {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * 6.文件重命名
+	 * 注意：1.新名字和旧名字不能一样；2新名字对应的文件要不存在，要不然就会同名
+	 */
+	public static void rename(File oldPath, File newPath){
+		String oldName = oldPath.getPath();
+		String newName = newPath.getPath();
+		if(!oldName.equals(newName)){
+			if(!newPath.exists()){
+				oldPath.renameTo(newPath);
+			}
+		}
+	}
 
 	/**
 	 * 14.创建目录
