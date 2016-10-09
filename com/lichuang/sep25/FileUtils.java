@@ -173,6 +173,59 @@ public class FileUtils {
 		File dest = new File(destination);
 		copyFiles(src,dest);
 	}
+	
+	/**
+	 * 4.文件删除
+	 * 
+	 * @throws Exception
+	 */
+	public static boolean removeFile(File fileName) {
+		boolean result = false;
+		try {
+			if (!fileName.exists()) {
+				throw new Exception("文件不存在！");
+			}
+			if (fileName.isFile()) {
+				result = fileName.delete();
+			}
+			if (result = Boolean.TRUE) {
+				System.out.println("删除成功！");
+			} else {
+				System.out.println("删除失败！");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	/**
+	 * 5.文件夹删除 
+	 * 注意：delete()可以删除文件和文件夹，也就是文件和目录，但假如文件夹中还有文件，则删除不了,需要逐层删除。
+	 */
+	public static void removeFolder(File filesPath) {
+		try {
+			if (!filesPath.exists()) {
+				throw new Exception("文件不存在！");
+			}
+			if(filesPath.isDirectory()){
+				File[] files = filesPath.listFiles();
+				for(int i = 0;i<files.length;i++){
+					if(files[i].isFile()){
+						files[i].delete();
+					}else if(files[i].isDirectory()){
+						removeFolder(files[i]);
+					}
+				}
+			}else {
+				filesPath.delete();
+			}
+			filesPath.delete();
+		} catch (Exception e) {
+			System.out.println("删除失败！");
+			e.printStackTrace();
+		}
+	}
 
 	/**
 	 * 14.创建目录
