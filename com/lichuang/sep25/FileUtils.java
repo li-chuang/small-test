@@ -33,6 +33,8 @@ public class FileUtils {
 		// File("E:\\jfsky_yingbi.rar"));
 		// copyFiles(new File("F:\\hello"), new File("E:\\hello"));
 		// copyFiles("F:\\hello", "E:\\hello");
+		// removeFile(new File("F:\\ed4c355a11ef197d0a9e519f3dd65325.jpg"));
+		removeFolder(new File("F:\\www - 副本"));
 	}
 
 	/**
