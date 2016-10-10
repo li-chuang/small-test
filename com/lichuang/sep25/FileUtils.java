@@ -290,6 +290,34 @@ public class FileUtils {
 	}
 	
 	/**
+	 * 9.遍历文件
+	 *   打印出文件的树状目录结构
+	 * @throws Exception 
+	 */
+	public static StringBuilder searchFolder(File file,int level){
+		StringBuilder sb = new StringBuilder();
+		try {
+			if(!file.exists()){
+					throw new Exception("文件不存在！");
+			}
+			for(int i=0;i<level;i++){
+				sb.append("--");
+			}
+			sb.append(file.getName()+"\n");
+			if(file.isDirectory()){
+				File[] files = file.listFiles();
+				level++;
+				for(int i=0;i<files.length;i++){
+					sb.append(searchFolder(files[i],level));
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return sb;
+	}
+	
+	/**
 	 * 14.创建目录
 	 */
 	public static void createDirectory(File file) {
