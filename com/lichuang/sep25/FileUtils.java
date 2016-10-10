@@ -268,6 +268,25 @@ public class FileUtils {
 				e.printStackTrace();
 			}
 	}
+	
+	/**
+	 * 8.获取文件扩展名信息
+	 */
+	public static String[] extensions(File file){
+		String[] extensions = new String[3];
+		if(file.isFile()){
+			String fileName = file.getName();
+			if(fileName.lastIndexOf(".") > 0){
+				int lastIndex = fileName.lastIndexOf(".");
+				extensions[0] = fileName.substring(0, lastIndex); //文件名
+				extensions[1] = fileName.substring(lastIndex+1);  //扩展名
+				extensions[2] = String.valueOf(lastIndex); //扩展名的“.”的索引
+				
+			}
+		}
+		System.out.println(extensions[0]+" , "+extensions[1]+" , "+extensions[2]);
+		return extensions;
+	}
 
 	/**
 	 * 14.创建目录
