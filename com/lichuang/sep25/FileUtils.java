@@ -36,7 +36,8 @@ public class FileUtils {
 		// removeFile(new File("F:\\ed4c355a11ef197d0a9e519f3dd65325.jpg"));
 		// removeFolder(new File("F:\\www - 副本"));
 		// rename(new File("F:\\logFile_1.txt"),new File("F:\\logFile_2.txt"));
-		moveFile(new File("F:\\logFile_2_副本.txt"),new File("E:\\logFile_2.txt"));
+		// moveFile(new File("F:\\logFile_2_副本.txt"),new File("E:\\logFile_2.txt"));
+		extensions(new File("F:\\logFile_2.txt"));
 	}
 
 	/**
@@ -143,25 +144,25 @@ public class FileUtils {
 	 */
 	public static void copyFiles(File source, File destination) {
 		try {
-			if (!source.exists()) {				
+			if (!source.exists()) {
 				throw new Exception("文件夹不存在！");
 			}
 			// 注意，让目的地址先建立起来很重要，不然会发生找不到路径的错误
-			if(!destination.exists()){
+			if (!destination.exists()) {
 				destination.mkdirs();
 			}
-			if(source.isDirectory()){
+			if (source.isDirectory()) {
 				String[] files = source.list();
 				int length = files.length;
-				for(int i=0;i<length;i++){
-					String src = source.getPath()+"\\"+files[i];
-					String dest = destination.getPath()+"\\"+files[i];
-					System.out.println(src +"\n"+dest);
+				for (int i = 0; i < length; i++) {
+					String src = source.getPath() + "\\" + files[i];
+					String dest = destination.getPath() + "\\" + files[i];
+					System.out.println(src + "\n" + dest);
 					File subFile = new File(src);
-					if(subFile.isDirectory()){						
-						copyFiles(subFile,new File(dest));
-					}else {
-						copyFile(subFile,new File(dest));
+					if (subFile.isDirectory()) {
+						copyFiles(subFile, new File(dest));
+					} else {
+						copyFile(subFile, new File(dest));
 					}
 				}
 			}
@@ -169,13 +170,13 @@ public class FileUtils {
 			e.printStackTrace();
 		}
 	}
-	
-	public static void copyFiles(String source,String destination){
+
+	public static void copyFiles(String source, String destination) {
 		File src = new File(source);
 		File dest = new File(destination);
-		copyFiles(src,dest);
+		copyFiles(src, dest);
 	}
-	
+
 	/**
 	 * 4.文件删除
 	 * 
@@ -287,7 +288,7 @@ public class FileUtils {
 		System.out.println(extensions[0]+" , "+extensions[1]+" , "+extensions[2]);
 		return extensions;
 	}
-
+	
 	/**
 	 * 14.创建目录
 	 */
@@ -328,4 +329,3 @@ public class FileUtils {
 		createFile(new File(destName + fileName));
 	}
 }
-
