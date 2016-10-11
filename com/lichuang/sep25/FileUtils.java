@@ -1,9 +1,13 @@
 package com.lichuang.Sep25;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
@@ -26,8 +30,7 @@ public class FileUtils {
 		// createDirectory("world");
 		// createDirectory("E:\\", "lichuang\\hello");
 		// System.out.println(fileSize(new File("F:\\jfsky_yingbi.rar"))/1024);
-		// System.out.println(fileSize(new
-		// File("F:\\war3"))/(1024*1024.0*1024));
+		// System.out.println(fileSize(new File("F:\\war3"))/(1024*1024.0*1024));
 		// System.out.println(fileSize("F:\\war3") / (1024 * 1024.0 * 1024));
 		// copyFile(new File("F:\\jfsky_yingbi.rar"),new
 		// File("E:\\jfsky_yingbi.rar"));
@@ -37,7 +40,9 @@ public class FileUtils {
 		// removeFolder(new File("F:\\www - 副本"));
 		// rename(new File("F:\\logFile_1.txt"),new File("F:\\logFile_2.txt"));
 		// moveFile(new File("F:\\logFile_2_副本.txt"),new File("E:\\logFile_2.txt"));
-		extensions(new File("F:\\logFile_2.txt"));
+		// extensions(new File("F:\\logFile_2.txt"));
+		// System.out.println(searchFolder(new File("F:\\war3"),0));
+		System.out.println(readFile(new File("F:\\logFile_2.txt"),null));
 	}
 
 	/**
@@ -315,6 +320,47 @@ public class FileUtils {
 			e.printStackTrace();
 		}
 		return sb;
+	}
+				
+	/**
+	 * 10.文件排序 
+	 */
+	
+	/**
+	 * 11.文件合并 
+	 */
+	
+	/**
+	 * 12.读取文本文件
+	 */
+	public static StringBuilder readFile(File file,String charset){
+		StringBuilder sb = new StringBuilder();
+		BufferedReader bufferedReader =null;
+		if(null == charset || "".equals(charset)){
+			charset = "UTF-8";
+		}
+		try {
+			if(!file.exists()||file.isDirectory()){
+				throw new FileNotFoundException();
+			}
+			bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(file),charset));
+			String temp ;
+			while((temp=bufferedReader.readLine()) != null){
+				sb.append(temp);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally{
+			try {
+				if(null != bufferedReader){
+						bufferedReader.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
+		
 	}
 	
 	/**
