@@ -42,7 +42,8 @@ public class FileUtils {
 		// moveFile(new File("F:\\logFile_2_副本.txt"),new File("E:\\logFile_2.txt"));
 		// extensions(new File("F:\\logFile_2.txt"));
 		// System.out.println(searchFolder(new File("F:\\war3"),0));
-		System.out.println(readFile(new File("F:\\logFile_2.txt"),null));
+		// System.out.println(readFile(new File("F:\\logFile_2.txt"),null));
+		writeFile(new File("F:\\lichuang - 副本.txt"),"Hello world !",false);
 	}
 
 	/**
@@ -361,6 +362,30 @@ public class FileUtils {
 		}
 		return sb;
 		
+	}
+	
+	/**
+	 * 13.写入指定文件（追加或覆盖）
+	 */
+	public static void writeFile(File file ,String content, boolean isAppend){
+		FileOutputStream fos = null;
+		try {
+			if(!file.exists()){
+				file.createNewFile();
+			}
+			fos  = new FileOutputStream(file, isAppend);
+			fos.write(content.getBytes());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally{
+			try {
+				if(null != fos){
+					fos.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}		
 	}
 	
 	/**
