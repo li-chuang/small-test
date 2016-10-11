@@ -346,7 +346,7 @@ public class FileUtils {
 			bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(file),charset));
 			String temp ;
 			while((temp=bufferedReader.readLine()) != null){
-				sb.append(temp);
+				sb.append(temp+"\n");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -359,7 +359,7 @@ public class FileUtils {
 				e.printStackTrace();
 			}
 		}
-		return null;
+		return sb;
 		
 	}
 	
