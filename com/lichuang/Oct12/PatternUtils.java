@@ -15,7 +15,7 @@ public class PatternUtils {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println(matchPhoneNumber("13545216097"));
+		System.out.println(matchPhoneNumber("我的电话号码是：13545216097"));
 	}
 	
 	/**
@@ -38,4 +38,5 @@ public class PatternUtils {
 	}
 
 }
+
 
