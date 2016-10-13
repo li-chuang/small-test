@@ -15,7 +15,9 @@ public class PatternUtils {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println(matchPhoneNumber("我的电话号码是：13545216097"));
+		// System.out.println(matchPhoneNumber("我的电话号码是：13545216097"));
+		// matchInfomation("我的QQ是:456456 ,我的电话是:0532214 ,我的邮箱是:aaa123@aaa.com");
+		replaceName("你好，我是Kevin，今天是我的生日！");
 	}
 	
 	/**
@@ -30,7 +32,7 @@ public class PatternUtils {
 		StringBuffer bf = new StringBuffer(64);
 		// 匹配器查找，如果存在则进入下面的处理
 		// 除了find(),还有matches()对整个字符串进行匹配,lookingAt()只有匹配到的字符串在最前面才返回true
-		if(matcher.find()){
+		if(matcher.find()){ // find()挨个寻找
 			// matcher.group()获取字符串中匹配的项，此例中为电话号码。
 			str = str.replace(matcher.group(), matcher.group().substring(0,3)+"********");
 		}
@@ -52,9 +54,31 @@ public class PatternUtils {
 		     System.out.print("start:"+m.start()); 
 		     System.out.println(" end:"+m.end()); 
 		} 
-
- 
 	}
+	
+	/**
+	 * 3.替换
+	 * replaceAll()/replaceFirst()全部替换、替换首个
+	 * appendReplacement(StringBuffer sb, String replacement)将前面的和替换的部分都加入到sb对象中 
+	 * appendTail(StringBuffer sb) 将匹配后的尾部加入到sb中。
+	 * str="你好，我是Kevin，今天是我的生日！"
+	 */
+	public static void replaceName(String str){
+		Pattern pattern = Pattern.compile("Kevin");
+		Matcher matcher= pattern.matcher(str);
+		StringBuffer sb = new StringBuffer();
+		boolean result = matcher.find();
+		int i=0;
+		while(result){
+			i++;
+			matcher.appendReplacement(sb, "007"); //你好，我是007
+			System.out.println("第"+i+"次匹配后sb的内容是："+sb); 
+			result = matcher.find();
+		}
+		matcher.appendTail(sb); //你好，我是007，今天是我的生日！
+		System.out.println("调用m.appendTail(sb)后sb的最终内容是:"+ sb.toString()); 
+	}
+	
 	
 	/**
 	 * 2.(?=x)y 零宽度正预测先行断言,它断言自身出现的位置的后面能匹配表达式exp.
