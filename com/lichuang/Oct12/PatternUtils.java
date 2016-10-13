@@ -17,7 +17,8 @@ public class PatternUtils {
 	public static void main(String[] args) {
 		// System.out.println(matchPhoneNumber("我的电话号码是：13545216097"));
 		// matchInfomation("我的QQ是:456456 ,我的电话是:0532214 ,我的邮箱是:aaa123@aaa.com");
-		replaceName("你好，我是Kevin，今天是我的生日！");
+		// replaceName("你好，我是Kevin，今天是我的生日！");
+		groupPhoneNumber("我家的座机号码是021-85853335");
 	}
 	
 	/**
@@ -32,7 +33,7 @@ public class PatternUtils {
 		StringBuffer bf = new StringBuffer(64);
 		// 匹配器查找，如果存在则进入下面的处理
 		// 除了find(),还有matches()对整个字符串进行匹配,lookingAt()只有匹配到的字符串在最前面才返回true
-		if(matcher.find()){ // find()挨个寻找
+		if(matcher.find()){ // find()挨个寻找，像迭代器
 			// matcher.group()获取字符串中匹配的项，此例中为电话号码。
 			str = str.replace(matcher.group(), matcher.group().substring(0,3)+"********");
 		}
@@ -61,6 +62,7 @@ public class PatternUtils {
 	 * replaceAll()/replaceFirst()全部替换、替换首个
 	 * appendReplacement(StringBuffer sb, String replacement)将前面的和替换的部分都加入到sb对象中 
 	 * appendTail(StringBuffer sb) 将匹配后的尾部加入到sb中。
+	 * 
 	 * str="你好，我是Kevin，今天是我的生日！"
 	 */
 	public static void replaceName(String str){
@@ -79,11 +81,39 @@ public class PatternUtils {
 		System.out.println("调用m.appendTail(sb)后sb的最终内容是:"+ sb.toString()); 
 	}
 	
+	/**
+	 * 4.分组
+	 * group()返回整个匹配
+	 * group(int group)返回确定的某个匹配
+	 * groupCount()返回组个数
+	 * group是指里用括号括起来的，能被后面的表达式调用的正则表达式，也就是组
+	 * 如：A(B(C))D，
+	 * 里面有三个group：group 0是ABCD， group 1是BC，group 2是C
+	 * 
+	 * str = "我家的座机号码是021-85853335"
+	 */
+	public static void groupPhoneNumber(String str){
+		Pattern pattern = Pattern.compile("(\\d{3})-(\\d{8})");
+		Matcher matcher = pattern.matcher(str);
+		if(matcher.find()){
+			System.out.println("该次查找获得匹配组的数量为："+matcher.groupCount()); // 2
+			System.out.println("该次查找获得匹配组第一分组为："+matcher.group(1)); // 021 
+			System.out.println("该次查找获得匹配组第二分组为："+matcher.group(2)); // 85853335
+		}
+	}
+	
 	
 	/**
-	 * 2.(?=x)y 零宽度正预测先行断言,它断言自身出现的位置的后面能匹配表达式exp.
+	 * 5.(?=x) 零宽度正预测先行断言,它断言自身出现的位置的前面能匹配表达式exp.
 	 * 比如\b\w+(?=ing\b),匹配以ing结尾的单词的前面部分(除了ing以外的部分),
 	 * 如查找I'm singing while you're dancing.时,它会匹配sing和danc.
+	 * \b 单词边界
+	 * \w 单词字符：[a-zA-Z_0-9] 
+	 * 
+	 * (?=X) 
+	 * (?!X) 
+	 * (?<=X) 
+	 * (?<!X) 
 	 */
 	
 	/**
@@ -91,5 +121,6 @@ public class PatternUtils {
 	 */
 
 }
+
 
 
