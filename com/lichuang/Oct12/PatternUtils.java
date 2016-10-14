@@ -19,7 +19,8 @@ public class PatternUtils {
 		// matchInfomation("我的QQ是:456456 ,我的电话是:0532214 ,我的邮箱是:aaa123@aaa.com");
 		// replaceName("你好，我是Kevin，今天是我的生日！");
 		// groupPhoneNumber("我家的座机号码是021-85853335");
-		lookAheadA("I'm singing while you're dancing.");
+		// lookAhead("I'm singing while you're dancing.");
+		lookBehind("republic of China");
 	}
 	
 	/**
@@ -114,11 +115,11 @@ public class PatternUtils {
 	 * (?=X) ，\\d{3}(?=a) 连续三个数字的后面出现的字符是a的匹配
 	 * (?!X) ，\\d{3}(?!a) 连续三个数字的后面出现的字符不是a的匹配
 	 * (?<=X) 
-	 * (?<!X) 
+	 * (?<!X)，
 	 * 
 	 * str = "I'm singing while you're dancing."
 	 */
-	public static void lookAheadA(String str){
+	public static void lookAhead(String str){
 		Pattern pattern = Pattern.compile("\\b\\w+(?=ing\\b)");
 		Matcher matcher = pattern.matcher(str);
 		while(matcher.find()){
@@ -126,13 +127,17 @@ public class PatternUtils {
 		}
 	}
 	
-	public static void lookAheadB(String str){
-		Pattern pattern = Pattern.compile("\\b\\w+(?=re\\b)");
+	/**
+	 * str = "republic of China"
+	 */
+	public static void lookBehind(String str){
+		Pattern pattern = Pattern.compile("(?<=re)\\w+\\b");
 		Matcher matcher = pattern.matcher(str);
 		while(matcher.find()){
 			System.out.println(matcher.group());
 		}
 	}
+	//"(?<!\\d)(?:(?:1[34578]\\d{9})|(?:861[34578]\\d{9}))(?!\\d)"
 	
 	/**
 	 * 
