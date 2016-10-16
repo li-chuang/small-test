@@ -139,11 +139,6 @@ public class PatternUtils {
 			System.out.println(matcher.group());
 		}
 	}
-	//"(?<!\\d)(?:(?:1[34578]\\d{9})|(?:861[34578]\\d{9}))(?!\\d)"
-	
-	/**
-	 * 
-	 */
 
 }
 
