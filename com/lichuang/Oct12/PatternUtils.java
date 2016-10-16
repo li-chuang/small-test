@@ -128,10 +128,12 @@ public class PatternUtils {
 	}
 	
 	/**
+	 * (?<=X),单词的开头是re的匹配。
+	 * 
 	 * str = "republic of China"
 	 */
 	public static void lookBehind(String str){
-		Pattern pattern = Pattern.compile("(?<=re)\\w+\\b");
+		Pattern pattern = Pattern.compile("(?<=\\bre)\\w+\\b");
 		Matcher matcher = pattern.matcher(str);
 		while(matcher.find()){
 			System.out.println(matcher.group());
@@ -144,5 +146,4 @@ public class PatternUtils {
 	 */
 
 }
-
 
