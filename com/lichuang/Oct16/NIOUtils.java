@@ -6,14 +6,18 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
 import java.nio.channels.FileChannel;
+import java.nio.charset.Charset;
+import java.nio.charset.CharsetDecoder;
 
 public class NIOUtils {
 
 	public static void main(String[] args) {
 		// copyFile(new File("F:\\testData"),new File("E:\\testData"));
 		// copyFiles(new File("F:\\war3"),new File("E:\\war3"));
-		readContent(new File("E:\\wen.txt"));  //E:\\logFile_2.txt"
+		// readContent(new File("E:\\wen.txt"));  //E:\\logFile_2.txt"
+		readChinaContent(new File("E:\\wen.txt"));
 	}
 	
 	/**
@@ -89,6 +93,23 @@ public class NIOUtils {
 			while(byteBuffer.hasRemaining()){
 				System.out.print((char)byteBuffer.get());
 			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 4.读取文件内容(汉字)
+	 */
+	public static void readChinaContent(File file){
+		try {
+			FileChannel fc = new FileInputStream(file).getChannel();
+			ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
+			fc.read(byteBuffer);
+			Charset charset = Charset.forName("GBK");
+			CharsetDecoder decoder = charset.newDecoder();
+			CharBuffer charBuffer = decoder.decode(byteBuffer);
+			System.out.println(charBuffer); 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
