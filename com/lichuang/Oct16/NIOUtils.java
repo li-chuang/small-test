@@ -10,6 +10,7 @@ import java.nio.CharBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
+import java.util.SortedMap;
 
 public class NIOUtils {
 
@@ -18,8 +19,9 @@ public class NIOUtils {
 		// copyFiles(new File("F:\\war3"),new File("E:\\war3"));
 		// readContent(new File("E:\\wen.txt"));  //E:\\logFile_2.txt"
 		
-		readChinaContent(new File("E:\\wen.txt"));
-		System.exit(0);
+		// readChinaContent(new File("E:\\wen.txt"));
+		
+		getCharset();
 	}
 	
 	/**
@@ -119,6 +121,17 @@ public class NIOUtils {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * 5.获取Java支持的全部字符集
+	 */
+	public static void getCharset(){
+		SortedMap<String, Charset> map = Charset.availableCharsets();
+		for(String charname :map.keySet()){
+			System.out.println(charname + " : "+ map.get(charname));
+		}
+	}
+	
 	
 }
 
