@@ -17,7 +17,9 @@ public class NIOUtils {
 		// copyFile(new File("F:\\testData"),new File("E:\\testData"));
 		// copyFiles(new File("F:\\war3"),new File("E:\\war3"));
 		// readContent(new File("E:\\wen.txt"));  //E:\\logFile_2.txt"
+		
 		readChinaContent(new File("E:\\wen.txt"));
+		System.exit(0);
 	}
 	
 	/**
@@ -108,8 +110,9 @@ public class NIOUtils {
 			fc.read(byteBuffer);
 			Charset charset = Charset.forName("GBK");
 			CharsetDecoder decoder = charset.newDecoder();
-			CharBuffer charBuffer = decoder.decode(byteBuffer);
-			System.out.println(charBuffer); 
+			System.out.println(new String(byteBuffer.array(),charset));
+			//CharBuffer charBuffer = decoder.decode(byteBuffer);
+			//System.out.println("It's "+charBuffer); 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
