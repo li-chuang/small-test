@@ -102,6 +102,8 @@ public class NIOUtils {
 	
 	/**
 	 * 4.读取文件内容(汉字)
+	 *  读取汉字的最大要点是要注意汉字的编码格式，byte[]数据在不同编码格式下，
+	 *  new String(byte[], Charset) 后的字符串是不一样的，有可能产生乱码。
 	 */
 	public static void readChinaContent(File file){
 		try {
@@ -109,7 +111,7 @@ public class NIOUtils {
 			ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
 			fc.read(byteBuffer);
 			Charset charset = Charset.forName("GBK");
-			CharsetDecoder decoder = charset.newDecoder();
+			//CharsetDecoder decoder = charset.newDecoder();
 			System.out.println(new String(byteBuffer.array(),charset));
 			//CharBuffer charBuffer = decoder.decode(byteBuffer);
 			//System.out.println("It's "+charBuffer); 
