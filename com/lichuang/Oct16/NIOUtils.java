@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.nio.channels.FileChannel;
@@ -23,7 +24,8 @@ public class NIOUtils {
 		
 		// getCharset();
 		
-		writeToFile(new File("E:\\lichuang.txt"),"你好，Java");
+		// writeToFile(new File("E:\\lichuang.txt"),"你好，Java");
+		addContentToEnd(new File("E:\\lichuang.txt"),"我很好");
 	}
 	
 	/**
@@ -143,7 +145,20 @@ public class NIOUtils {
 			fc.write(ByteBuffer.wrap(str.getBytes()));
 			fc.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 7.以读写方式打开文件，并在尾部追加内容
+	 */
+	public static void addContentToEnd(File destination,String str){
+		try {
+			FileChannel fc = new RandomAccessFile(destination, "rw").getChannel();
+			fc.position(fc.size());
+			fc.write(ByteBuffer.wrap(str.getBytes()));
+			fc.close();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
