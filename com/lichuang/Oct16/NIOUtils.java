@@ -21,7 +21,9 @@ public class NIOUtils {
 		
 		// readChinaContent(new File("E:\\wen.txt"));
 		
-		getCharset();
+		// getCharset();
+		
+		writeToFile(new File("E:\\lichuang.txt"),"你好，Java");
 	}
 	
 	/**
@@ -132,6 +134,19 @@ public class NIOUtils {
 		}
 	}
 	
+	/**
+	 * 6.向一个文件中写入文本
+	 */
+	public static void writeToFile(File destination,String str){
+		try {
+			FileChannel fc = new FileOutputStream(destination).getChannel();
+			fc.write(ByteBuffer.wrap(str.getBytes()));
+			fc.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	
 }
-
