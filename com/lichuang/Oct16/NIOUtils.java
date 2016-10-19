@@ -174,6 +174,8 @@ public class NIOUtils {
 	 * 8.利用RandomAccessFile实现文件的多线程下载
 	 *   即多线程下载一个文件时，将文件分成几块，每块用不同的线程进行下载  
 	 *   
+	 *   由于这是IO的知识点，具体的代码转移到OIUtils.java中
+	 *   
 	 */
 	
 	
