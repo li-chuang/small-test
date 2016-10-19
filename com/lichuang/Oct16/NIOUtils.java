@@ -151,12 +151,18 @@ public class NIOUtils {
 	
 	/**
 	 * 7.以读写方式打开文件，并在尾部追加内容
+	 * 
+	 *   RandomAccessFile可以任意位置读写文件，向1G大小的文件末尾添加一句话，读取文件然后字符串拼接就可以，
+	 *   但面对超过内存的超大文件，如给20G大小的文件末尾添加一句话，IO就无能为力了，内存会溢出。
+	 *   于是这个时候RandomAccessFile的作用就凸显出来了，它可以实现零内存添加。其实这就是支持任意位置读写类的强大之处。
+	 *   
+	 *   如果我们只希望访问文件的部分内容，而不是把文件从头读到尾，使用RandomAccessFile将会带来更简洁的代码以及更好的性能。
 	 */
 	public static void addContentToEnd(File destination,String str){
 		try {
 			FileChannel fc = new RandomAccessFile(destination, "rw").getChannel();
-			fc.position(fc.size());
-			fc.write(ByteBuffer.wrap(str.getBytes()));
+			fc.position(fc.size());  // 通过position方法设置FileChannel的当前位置，此处是设定到了末尾
+			fc.write(ByteBuffer.wrap(str.getBytes())); //  wrap() 方法将一个数组包装为缓冲区，从而直接使用
 			fc.close();
 		} catch (IOException e) {
 			e.printStackTrace();
