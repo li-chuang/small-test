@@ -162,6 +162,7 @@ public class NIOUtils {
 		try {
 			FileChannel fc = new RandomAccessFile(destination, "rw").getChannel();
 			fc.position(fc.size());  // 通过position方法设置FileChannel的当前位置，此处是设定到了末尾
+			//其实RandomAccessFile的seek()方法也可以移动指针位置。指针在哪里，就从哪里添加
 			fc.write(ByteBuffer.wrap(str.getBytes())); //  wrap() 方法将一个数组包装为缓冲区，从而直接使用
 			fc.close();
 		} catch (IOException e) {
@@ -169,5 +170,12 @@ public class NIOUtils {
 		}
 	}
 	
+	/**
+	 * 8.利用RandomAccessFile实现文件的多线程下载
+	 *   即多线程下载一个文件时，将文件分成几块，每块用不同的线程进行下载  
+	 *   
+	 */
+	
 	
 }
+
