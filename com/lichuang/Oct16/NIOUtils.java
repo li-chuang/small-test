@@ -7,10 +7,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.SortedMap;
 
@@ -27,10 +30,13 @@ public class NIOUtils {
 
 		// writeToFile(new File("E:\\lichuang.txt"),"你好，Java");
 		// addContentToEnd(new File("E:\\lichuang.txt"), "我很好");
-		List<String> result = largeMapFile(new File("E:\\lichuang.txt"), "我很好");
+		
+		/*List<String> result = largeMapFile(new File("E:\\lichuang.txt"), "我很好");
 		for (int i = 0; i < result.size(); i++) {
 			System.out.println(result.get(i));
-		}
+		}*/
+		
+		castByBuffer(new byte[] {0, 1, 2, 3, 4, 5, 'a', 'b', 'c'});
 	}
 
 	/**
@@ -113,7 +119,8 @@ public class NIOUtils {
 	}
 
 	/**
-	 * 4.读取文件内容(汉字) 读取汉字的最大要点是要注意汉字的编码格式，byte[]数据在不同编码格式下， new String(byte[],
+	 * 4.读取文件内容(汉字) 
+	 * 读取汉字的最大要点是要注意汉字的编码格式，byte[]数据在不同编码格式下， new String(byte[],
 	 * Charset) 后的字符串是不一样的，有可能产生乱码。
 	 */
 	public static void readChinaContent(File file) {
@@ -185,7 +192,8 @@ public class NIOUtils {
 	 */
 
 	/**
-	 * 9.将一个大文件映射到内存并查找指定的文本内容是否在该文件中 注意MappedByteBuffer的使用是重点
+	 * 9.将一个大文件映射到内存并查找指定的文本内容是否在该文件中 
+	 *   注意MappedByteBuffer的使用是重点
 	 * 
 	 */
 	public static List<String> largeMapFile(File file, String text) {
@@ -200,6 +208,7 @@ public class NIOUtils {
 			String str = Charset.forName("GBK").decode(dst).toString();
 			// 准备进行读
 			dst.flip();
+			// 此处只判断有没有，检索结果还可以更复杂，都可以放在list中传递出去
 			if (str.indexOf(text) != -1) {
 				result.add(file.getName());
 			}
@@ -210,6 +219,39 @@ public class NIOUtils {
 		}
 		return result;
 	}
+	
+	/**
+	 * 10.数据类型的转换
+	 *   NIO中可以利用ByteBuffer的asXBuffer方法实现数据类型的转换
+	 */
+	public static void castByBuffer(byte[] bytes){
+		ByteBuffer bBuf = ByteBuffer.wrap(bytes);
+		System.out.println(Arrays.toString(bBuf.array()));
+		//转换成IntBuffer  
+        IntBuffer iBuf = ((ByteBuffer)bBuf.rewind()).asIntBuffer();  
+        while(iBuf.hasRemaining()) {  
+            System.out.print(iBuf.get()+",");  
+        }  
+        //转换成FloatBuffer  
+        FloatBuffer fBuf = ((ByteBuffer)bBuf.rewind()).asFloatBuffer();  
+        while(fBuf.hasRemaining()) {  
+            System.out.print(fBuf.get()+",");  
+        }  
+	}
+	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
