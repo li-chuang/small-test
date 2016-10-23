@@ -237,8 +237,7 @@ public class NIOUtils {
         while(fBuf.hasRemaining()) {  
             System.out.print(fBuf.get()+",");  
         }  
-	}
-	
+	}	
 
 }
 
