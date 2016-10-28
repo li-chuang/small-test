@@ -9,8 +9,21 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class ConnectionUtils {
+	public static void main(String[] args) throws Exception {
+		/* Post Request */
+        Map<String,String> dataMap = new HashMap<String,String>();
+        dataMap.put("username", "Nick Huang");
+        dataMap.put("blog", "IT");
+        System.out.println(ConnectionUtils.doPost("http://localhost:8080/OneHttpServer/", dataMap));
+        
+        /* Get Request */
+        System.out.println(ConnectionUtils.doGet("http://localhost:8080/OneHttpServer/"));
+	}
 
 	/**
 	 * 1.HTTP请求之GET请求
@@ -18,9 +31,9 @@ public class ConnectionUtils {
 	 * @throws MalformedURLException
 	 * 
 	 */
-	public static String doGet() throws Exception {
+	public static String doGet(String url) throws Exception {
 		// 1.通过统一资源定位器(URL)，获取连接器(URLConnection)
-		URL localURL = new URL("");
+		URL localURL = new URL(url);
 		URLConnection connection = localURL.openConnection();
 		HttpURLConnection httpURLConnection = (HttpURLConnection) connection;
 
@@ -64,10 +77,30 @@ public class ConnectionUtils {
 	 * @throws MalformedURLException
 	 * 
 	 */
-	public static String doPost() throws Exception {
-		String parameterData = "username=nickhuang&blog=http://www.cnblogs.com/nick-huang/";
+	public static String doPost(String url,Map parameterMap) throws Exception {
+		/* Translate parameter map to parameter date string */
+        StringBuffer parameterBuffer = new StringBuffer();
+        if (parameterMap != null) {
+            Iterator iterator = parameterMap.keySet().iterator();
+            String key = null;
+            String value = null;
+            while (iterator.hasNext()) {
+                key = (String)iterator.next();
+                if (parameterMap.get(key) != null) {
+                    value = (String)parameterMap.get(key);
+                } else {
+                    value = "";
+                }
+                
+                parameterBuffer.append(key).append("=").append(value);
+                if (iterator.hasNext()) {
+                    parameterBuffer.append("&");
+                }
+            }
+        }
+		//String parameterData = "username=nickhuang&blog=http://www.cnblogs.com/nick-huang/";
 
-		URL localURL = new URL("");
+		URL localURL = new URL(url);
 		URLConnection connection = localURL.openConnection();
 		HttpURLConnection httpURLConnection = (HttpURLConnection) connection;
 
@@ -77,13 +110,13 @@ public class ConnectionUtils {
 		httpURLConnection.setRequestProperty("Content-Type",
 				"application/x-www-form-urlencoded");
 		httpURLConnection.setRequestProperty("Content-Length",
-				String.valueOf(parameterData.length()));
+				String.valueOf(parameterBuffer.length()));
 
 		OutputStream outputStream = httpURLConnection.getOutputStream();
 		OutputStreamWriter outputStreamWriter = new OutputStreamWriter(
 				outputStream);
 
-		outputStreamWriter.write(parameterData.toString());
+		outputStreamWriter.write(parameterBuffer.toString());
 		outputStreamWriter.flush();
 
 		if (httpURLConnection.getResponseCode() >= 300) {
@@ -122,3 +155,4 @@ public class ConnectionUtils {
 	}
 
 }
+
