@@ -13,7 +13,7 @@ import org.json.JSONObject;
 public class JsonUtils {
 	
 	public static void main(String[] args) {
-		createJson();
+		createJson(new Person("lich","100", new String[]{"football","swimming"}));
 	}
 	
 	public static void jsonToString(JSONObject json){
@@ -41,7 +41,18 @@ public class JsonUtils {
 	
 	// 将对象信息转为Json格式，
 	public static void createJson(Person person){
+		JSONObject json = new JSONObject();
+		json.put("name", person.getName());
+		json.put("age", person.getAge());
 		
+		JSONArray array = new JSONArray();
+		for(String fav : person.getFavorite()){
+			array.put(fav);
+		}
+		
+		json.put("favorite", array);
+		
+		System.out.println(json.toString());
 	}
 }
 
@@ -50,6 +61,15 @@ class Person{
 	private String name;
 	private String age;
 	private String[] favorite;
+	
+	public Person(){
+		
+	}
+	public Person(String name,String age,String[] favorite){
+		this.name = name;
+		this.age = age;
+		this.favorite = favorite;
+	}
 	public String getName() {
 		return name;
 	}
