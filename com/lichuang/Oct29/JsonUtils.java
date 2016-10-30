@@ -4,11 +4,13 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
- * json包似乎功能太弱了，好多想法无法实现，所以想换一种功能更强大的jar包
  * Json的使用
- * 1.将字符串解析为Json对象
- * 2.将Json解析为字符串
- * 3.创建Json格式的数据
+ * 1.用String类型的json数据生成Json对象；
+ * 2.用Object实体数据生成对应的Json对象；
+ * 3.用String类型的json数据生成Object对象；
+ * 4.用Json对象生成生成对应的Object对象；
+ * 5.用Object对象生成String类型的json数据；
+ * 6.用Json对象生成对应的String类型的json数据；
  *
  */
 public class JsonUtils {
@@ -17,15 +19,36 @@ public class JsonUtils {
 		createJson(new Person("lich","100", new String[]{"football","swimming"}));
 	}
 	
-	// 将Json对象以String的形式输出
+	// 1.将String类型的信息转换为Json对象
+	public static void stringToJson(String str){
+		
+	}
+	
+	// 2.用Object实体数据生成对应的Json对象
+	public static void objectToJson(Object obj){
+		
+	}
+	
+	// 3.用String类型的json数据生成Object对象
+	public static void stringToBean(String str){
+		
+	} 
+	
+	// 4.用Json对象生成生成对应的Object对象
+	public static void jsonToObject(JSONObject json){
+		
+	}
+	
+	// 5.用Object对象生成String类型的json数据
+	public static void objectToString(Object obj){
+		
+	}
+	
+	// 6.用Json对象生成对应的String类型的json数据
 	public static void jsonToString(JSONObject json){
 		
 	}
 
-	// 将String类型的信息转换为Json对象
-	public static void stringToJson(String str){
-		
-	}
 	
 	// 生成简单的Json对象
 	public static void createJsonTest(){
@@ -61,10 +84,7 @@ public class JsonUtils {
 		
 	}
 	
-	// 将String格式的信息转换为实体对象
-	public static void stringToBean(String str){
-		//JSONObject()
-	}
+	
 }
 
 // 实体类
