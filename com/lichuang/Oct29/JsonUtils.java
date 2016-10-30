@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
+ * json包似乎功能太弱了，好多想法无法实现，所以想换一种功能更强大的jar包
  * Json的使用
  * 1.将字符串解析为Json对象
  * 2.将Json解析为字符串
