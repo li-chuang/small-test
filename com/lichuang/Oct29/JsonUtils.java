@@ -16,10 +16,12 @@ public class JsonUtils {
 		createJson(new Person("lich","100", new String[]{"football","swimming"}));
 	}
 	
+	// 将Json对象以String的形式输出
 	public static void jsonToString(JSONObject json){
 		
 	}
 
+	// 将String类型的信息转换为Json对象
 	public static void stringToJson(String str){
 		
 	}
@@ -48,11 +50,19 @@ public class JsonUtils {
 		JSONArray array = new JSONArray();
 		for(String fav : person.getFavorite()){
 			array.put(fav);
-		}
-		
-		json.put("favorite", array);
-		
+		}		
+		json.put("favorite", array);		
 		System.out.println(json.toString());
+	}
+	
+	// 将任意对象信息转为Json格式，
+	public static void createJson(Object obj){
+		
+	}
+	
+	// 将String格式的信息转换为实体对象
+	public static void stringToBean(String str){
+		//JSONObject()
 	}
 }
 
