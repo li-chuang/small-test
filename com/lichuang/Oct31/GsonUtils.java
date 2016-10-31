@@ -1,6 +1,7 @@
 package com.lichuang.Oct31;
 
 import java.lang.reflect.Type;
+import java.util.Arrays;
 import java.util.Map;
 
 import com.google.gson.Gson;
@@ -20,6 +21,7 @@ public class GsonUtils {
 
 	public static void main(String[] args) {
 		//3 stringToObject("{\"age\":\"100\",\"name\":\"lich\",\"favorite\":\"football\"}");
+		stringToBean("{\"age\":\"100\",\"name\":\"lich\",\"favorite\":[\"football\",\"swimming\"]}");
 		//5 objectToString(new Person("lich", "100", new String[] { "football","swimming" }));
 	}
 
@@ -42,6 +44,12 @@ public class GsonUtils {
         for (String key : map.keySet()) {
             System.out.println("map.get = " + map.get(key));
         }
+	}
+	
+	public static void stringToBean(String str) {
+		Gson gson = new Gson();
+        Person person = gson.fromJson(str, Person.class);
+        System.out.println(person.getAge()+" "+person.getName()+" "+Arrays.toString(person.getFavorite()));
 	}
 
 	// 4.用Json对象生成生成对应的Object对象
