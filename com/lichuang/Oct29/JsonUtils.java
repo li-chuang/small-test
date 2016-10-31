@@ -1,5 +1,7 @@
 package com.lichuang.Oct29;
 
+import java.text.ParseException;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -11,16 +13,26 @@ import org.json.JSONObject;
  * 4.用Json对象生成生成对应的Object对象；
  * 5.用Object对象生成String类型的json数据；
  * 6.用Json对象生成对应的String类型的json数据；
+ * 7.JSONString
+ * 8。JSONTokener
  *
  */
 public class JsonUtils {
 	
 	public static void main(String[] args) {
-		createJson(new Person("lich","100", new String[]{"football","swimming"}));
+		//createJson(new Person("lich","100", new String[]{"football","swimming"}));
+		stringToJson("{\"age\":\"100\",\"name\":\"lich\",\"favorite\":[\"football\",\"swimming\"]}");
 	}
 	
-	// 1.将String类型的信息转换为Json对象
+	// 1.将String类型的信息转换为Json对象(很简单，JSONObject构造方法可以传入String)
 	public static void stringToJson(String str){
+		try {
+			JSONObject json = new JSONObject(str);
+			System.out.println(json.get("name"));
+			System.out.println(json.toString());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	
@@ -122,3 +134,4 @@ class Person{
 	
 	
 }
+
