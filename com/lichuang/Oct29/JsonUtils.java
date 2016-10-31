@@ -58,7 +58,7 @@ public class JsonUtils {
 	
 	// 6.用Json对象生成对应的String类型的json数据
 	public static void jsonToString(JSONObject json){
-		
+		System.out.println(json.toString());
 	}
 
 	
@@ -134,4 +134,3 @@ class Person{
 	
 	
 }
-
