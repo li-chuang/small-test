@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 /**
@@ -27,10 +30,12 @@ public class GsonUtils {
 		map.put("age", "99");
 		mapToString(map);*/
 		
-		List<String> list = new ArrayList<String>();
+		/*List<String> list = new ArrayList<String>();
 		list.add("football");
 		list.add("swimming");
-		listToString(list);
+		listToString(list);*/
+		
+		createJsonObject();
 	}
 
 	// 3.用String类型的json数据生成Object对象
@@ -68,21 +73,14 @@ public class GsonUtils {
 		System.out.println(gsonStr);
 	}
 
-	// 2.用Object实体数据生成对应的Json对象
-	public static void objectToJson(Object obj) {
-		Gson gson = new Gson();
-
+	// 创建JsonObject
+	public static void createJsonObject(){
+		JsonObject object = new JsonObject();
+		object.addProperty("name", "lich");
+		object.addProperty("age", "20");
+		System.out.println(object);
 	}
-
-	// 4.用Json对象生成生成对应的Object对象
-	public static void jsonToObject(Gson json) {
-
-	}
-
-	// 6.用Json对象生成对应的String类型的json数据
-	public static void jsonToString(Gson json) {
-
-	}
+	
 }
 
 // 实体类
