@@ -1,10 +1,22 @@
 package com.lichuang.Nov02;
 
+import java.io.File;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.TransformerFactoryConfigurationError;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 /**
  * 利用JAXP进行DOM方式解析
@@ -28,11 +40,54 @@ public class XmlDOMUtils {
 		}
 		return document;
 	}
+
+	//将内存中的文档树保存为.xml文档
+	private static void extractXML(Document doc,String path) {	
+		Transformer transformer;
+		try {
+			//得到转换器
+			transformer = TransformerFactory.newInstance().newTransformer();
+			//设置换行
+			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+			//写入文件
+			transformer.transform(new DOMSource(doc), new StreamResult(new File(path)));
+		} catch (TransformerConfigurationException e) {
+			e.printStackTrace();
+		} catch (TransformerFactoryConfigurationError e) {
+			e.printStackTrace();
+		} catch (TransformerException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// 创建一个XML文件
+	public static void createXml(){
+		//创建一个文件根节点doc
+		Document doc = getDocument();
+		//创建一大堆的元素/节点，然后按照自己的意愿安顿
+		Element students = doc.createElement("students");		
+		Element student = doc.createElement("student");
+		Element name = doc.createElement("name");
+		Node attrName = doc.createTextNode("Lich");//末尾的称为节点，其他的都是元素
+		
+		//添加子节点
+		doc.appendChild(students);
+		students.appendChild(student);
+		student.appendChild(name);
+		student.setAttribute("age", "99");//这里添加的就是属性值
+		name.appendChild(attrName);
+		//System.out.println(doc);
+		// 生成.xml文档
+		extractXML(doc,"D:/students.xml");
+	}
+
+	
 	
 	// 用DOM创建一个XML文件
 	
 	public static void main(String[] args) {
-		System.out.println(getDocument());
+		//System.out.println(getDocument());
+		createXml();
 	}
 
 }
