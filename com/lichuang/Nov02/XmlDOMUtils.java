@@ -1,6 +1,7 @@
 package com.lichuang.Nov02;
 
 import java.io.File;
+import java.io.IOException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -17,6 +18,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.xml.sax.SAXException;
 
 /**
  * 利用JAXP进行DOM方式解析
@@ -26,19 +28,19 @@ import org.w3c.dom.Node;
  */
 public class XmlDOMUtils {
 	
-	private static Document document;
+	private static DocumentBuilder builder;
 	//得到dom解析器的工厂实例
-	public static Document getDocument(){
+	public static DocumentBuilder getDocumentBuilder(){
 		try {
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder builder = factory.newDocumentBuilder();
-			if(document == null){				
-				document = builder.newDocument();
+			//DocumentBuilder builder = null;//factory.newDocumentBuilder();
+			if(builder == null){				
+				builder = factory.newDocumentBuilder();
 			}
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
 		}
-		return document;
+		return builder;
 	}
 
 	//将内存中的文档树保存为.xml文档
@@ -63,7 +65,8 @@ public class XmlDOMUtils {
 	// 创建一个XML文件
 	public static void createXml(){
 		//创建一个文件根节点doc
-		Document doc = getDocument();
+		DocumentBuilder builder = getDocumentBuilder();
+		Document doc = builder.newDocument();
 		//创建一大堆的元素/节点，然后按照自己的意愿安顿
 		Element students = doc.createElement("students");		
 		Element student = doc.createElement("student");
@@ -81,10 +84,19 @@ public class XmlDOMUtils {
 		extractXML(doc,"D:/students.xml");
 	}
 
+	public static void parseXml(){
+		DocumentBuilder builder = getDocumentBuilder();
+		try {
+			Document document = builder.parse("");
+		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	
-	// 用DOM创建一个XML文件
-	
+	// 用DOM创建一个XML文件	
 	public static void main(String[] args) {
 		//System.out.println(getDocument());
 		createXml();
