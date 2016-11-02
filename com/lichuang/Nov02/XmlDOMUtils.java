@@ -93,11 +93,13 @@ public class XmlDOMUtils {
 			for(int i=0;i<students.getLength();i++){
 				Node student = students.item(i);
 				NodeList studenInfo = student.getChildNodes();
+				// 这里可能有5个节点
 				for(int j=0;j<studenInfo.getLength();j++){
 					Node node = studenInfo.item(j);
 					NodeList studentMeta = node.getChildNodes();
+					// 解析的时候空白也算进去了，所以可能有5个子节点
 					for(int k=0;k<studentMeta.getLength();k++){
-						System.out.println(studentMeta.item(k).getNodeName()+" "+studentMeta.item(k).getTextContent());
+						System.out.println(studentMeta.item(k).getNodeName()+" : "+studentMeta.item(k).getTextContent());
 					}
 				}
 			}
