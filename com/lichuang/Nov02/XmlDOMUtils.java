@@ -18,6 +18,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 /**
@@ -84,10 +85,22 @@ public class XmlDOMUtils {
 		extractXML(doc,"D:/students.xml");
 	}
 
-	public static void parseXml(){
+	public static void parseXml(String path){
 		DocumentBuilder builder = getDocumentBuilder();
 		try {
-			Document document = builder.parse("");
+			Document doc = builder.parse(path);
+			NodeList students = doc.getChildNodes();
+			for(int i=0;i<students.getLength();i++){
+				Node student = students.item(i);
+				NodeList studenInfo = student.getChildNodes();
+				for(int j=0;j<studenInfo.getLength();j++){
+					Node node = studenInfo.item(j);
+					NodeList studentMeta = node.getChildNodes();
+					for(int k=0;k<studentMeta.getLength();k++){
+						System.out.println(studentMeta.item(k).getNodeName()+" "+studentMeta.item(k).getTextContent());
+					}
+				}
+			}
 		} catch (SAXException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -99,7 +112,8 @@ public class XmlDOMUtils {
 	// 用DOM创建一个XML文件	
 	public static void main(String[] args) {
 		//System.out.println(getDocument());
-		createXml();
+		// createXml();
+		parseXml("D:/students.xml");
 	}
 
 }
@@ -164,3 +178,4 @@ class Student{
     
     
 }
+
