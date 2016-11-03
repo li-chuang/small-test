@@ -191,6 +191,16 @@ public class XmlDOMUtils {
 		
 	}
 	
+	//向一个XML文件中添加节点
+	public static void addNodeToXml(Student student){
+		
+	}
+	
+	//向一个XML文件中删除节点
+	public static void deleteNodeFromXml(){
+		
+	}
+	
 	
 	// 用DOM创建一个XML文件	
 	public static void main(String[] args) throws Exception{
