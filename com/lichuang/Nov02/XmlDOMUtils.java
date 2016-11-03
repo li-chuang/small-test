@@ -2,6 +2,8 @@ package com.lichuang.Nov02;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -34,7 +36,6 @@ public class XmlDOMUtils {
 	public static DocumentBuilder getDocumentBuilder(){
 		try {
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-			//DocumentBuilder builder = null;//factory.newDocumentBuilder();
 			if(builder == null){				
 				builder = factory.newDocumentBuilder();
 			}
@@ -118,12 +119,51 @@ public class XmlDOMUtils {
 		}
 	}
 	
+	//用Bean实例创建XML文件
+	//注意树形结构，只要理清了树的结构，DOM可以随时插入节点还是很不错的。
+	public static void createXMLByBean(List<Student> list){
+		DocumentBuilder builder = getDocumentBuilder();
+		Document doc = builder.newDocument();
+		Element students = doc.createElement("students");
+		doc.appendChild(students);//DOM的好处就是树形结构可以随时插入
+		for(Student stu :list){
+			Element student = doc.createElement("student");
+			student.setAttribute("idcard", stu.getIdcard());//属性可以直接设置
+			
+			Element name = doc.createElement("name");//节点与文本节点
+			name.appendChild(doc.createTextNode(stu.getName()));//doc.createTextNode(stu.getName())
+			student.appendChild(name);
+			
+			Element location = doc.createElement("location");
+			location.appendChild(doc.createTextNode(stu.getLocation()));//注意，这里的是文本节点
+			student.appendChild(location);
+			
+			Element examid = doc.createElement("examid");
+			examid.appendChild(doc.createTextNode(stu.getExamid()));
+			student.appendChild(examid);
+			
+			Element grade = doc.createElement("grade");
+			grade.appendChild(doc.createTextNode(stu.getGrade()));
+			student.appendChild(grade);
+			
+			students.appendChild(student);//归并到树中
+		}
+		
+		// 生成.xml文档
+		extractXML(doc,"D:/students.xml");
+	}
+	
 	
 	// 用DOM创建一个XML文件	
 	public static void main(String[] args) {
 		//System.out.println(getDocument());
 		// createXml();
-		parseXml("D:/students.xml");
+		//parseXml("D:/students.xml");
+		
+		List<Student> list = new ArrayList<Student>();
+		list.add(new Student("07152225","1010","Lich","ShangHai","98"));
+		list.add(new Student("07163336","1011","ZhaoLiu","Beijing","100"));
+		createXMLByBean(list);
 	}
 
 }
@@ -133,12 +173,12 @@ class Student{
     private String examid;  
     private String name;  
     private String location;  
-    private float grade;
+    private String grade;
         
 	public Student() {
 	}
 
-	public Student(String idcard, String examid, String name, String location,float grade) {
+	public Student(String idcard, String examid, String name, String location,String grade) {
 		this.idcard = idcard;
 		this.examid = examid;
 		this.name = name;
@@ -178,11 +218,11 @@ class Student{
 		this.location = location;
 	}
 
-	public float getGrade() {
+	public String getGrade() {
 		return grade;
 	}
 
-	public void setGrade(float grade) {
+	public void setGrade(String grade) {
 		this.grade = grade;
 	}
     
