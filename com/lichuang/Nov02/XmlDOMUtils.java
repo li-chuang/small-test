@@ -153,17 +153,58 @@ public class XmlDOMUtils {
 		extractXML(doc,"D:/students.xml");
 	}
 	
+	//解析一个XMl文件到实体类中
+	public static List<Student> parseXmlToBean(String path) throws Exception, IOException{
+		DocumentBuilder builder = getDocumentBuilder();
+		Document doc = builder.parse(path);
+		Element students = doc.getDocumentElement();
+		NodeList studentList = students.getElementsByTagName("student");//获取带student标签的树分支
+		List<Student> list = new ArrayList<Student>(); 
+		for(int i=0;i<studentList.getLength();i++){//此处以下就是具体到每棵小树
+			Element stuElement = (Element) studentList.item(i);
+			Student student = new Student();
+			student.setIdcard(stuElement.getAttribute("idcard"));//属性可以直接获取
+			
+			NodeList stuAttribute = stuElement.getChildNodes();//其他的属性还在子节点中
+			for(int j=0;j<stuAttribute.getLength();j++){//此处以下具体到每个属性节点中
+				if(stuAttribute.item(j).getNodeType() == Node.ELEMENT_NODE){
+					if("name".equals(stuAttribute.item(j).getNodeName())){
+						//注意不要忘了getFirstChild(),文字部分也属于节点，是属性节点的下级，获得第一个子节点后才可以获取值
+						student.setName(stuAttribute.item(j).getFirstChild().getNodeValue());
+					}else if("location".equals(stuAttribute.item(j).getNodeName())){
+						student.setLocation(stuAttribute.item(j).getFirstChild().getNodeValue());
+					}else if("examid".equals(stuAttribute.item(j).getNodeName())){
+						student.setExamid(stuAttribute.item(j).getFirstChild().getNodeValue());
+					}else if("grade".equals(stuAttribute.item(j).getNodeName())){
+						student.setGrade(stuAttribute.item(j).getFirstChild().getNodeValue());
+					}
+				}
+			}
+			list.add(student);
+		}
+		return list;
+		
+	}
+	
+	//解析一个XML文件到控制台以树形结构呈现
+	public static void parseXmlToTree(){
+		
+	}
+	
 	
 	// 用DOM创建一个XML文件	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception{
 		//System.out.println(getDocument());
 		// createXml();
 		//parseXml("D:/students.xml");
 		
-		List<Student> list = new ArrayList<Student>();
+		/*List<Student> list = new ArrayList<Student>();
 		list.add(new Student("07152225","1010","Lich","ShangHai","98"));
 		list.add(new Student("07163336","1011","ZhaoLiu","Beijing","100"));
-		createXMLByBean(list);
+		createXMLByBean(list);*/
+		
+		List<Student> list = parseXmlToBean("D:/students.xml");
+		System.out.println(list);
 	}
 
 }
@@ -224,6 +265,12 @@ class Student{
 
 	public void setGrade(String grade) {
 		this.grade = grade;
+	}
+
+	@Override
+	public String toString() {
+		return "Student [idcard=" + idcard + ", examid=" + examid + ", name="
+				+ name + ", location=" + location + ", grade=" + grade + "]";
 	}
     
     
