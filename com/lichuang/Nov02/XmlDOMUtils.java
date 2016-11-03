@@ -85,21 +85,29 @@ public class XmlDOMUtils {
 		extractXML(doc,"D:/students.xml");
 	}
 
+	// XML文件的解析
+	// 这里有一个大坑，DOM解析的时候，空格都算一个元素，导致有很多无效的子元素，在这里需要对节点的类型进行进行判断
 	public static void parseXml(String path){
 		DocumentBuilder builder = getDocumentBuilder();
 		try {
 			Document doc = builder.parse(path);
 			NodeList students = doc.getChildNodes();
 			for(int i=0;i<students.getLength();i++){
-				Node student = students.item(i);
-				NodeList studenInfo = student.getChildNodes();
-				// 这里可能有5个节点
-				for(int j=0;j<studenInfo.getLength();j++){
-					Node node = studenInfo.item(j);
-					NodeList studentMeta = node.getChildNodes();
-					// 解析的时候空白也算进去了，所以可能有5个子节点
-					for(int k=0;k<studentMeta.getLength();k++){
-						System.out.println(studentMeta.item(k).getNodeName()+" : "+studentMeta.item(k).getTextContent());
+				if(students.item(i).getNodeType() == Node.ELEMENT_NODE){					
+					Node student = students.item(i);
+					NodeList studenInfo = student.getChildNodes();
+					// 这里可能有5个节点
+					for(int j=0;j<studenInfo.getLength();j++){
+						if(studenInfo.item(j).getNodeType() == Node.ELEMENT_NODE){							
+							Node node = studenInfo.item(j);
+							NodeList studentMeta = node.getChildNodes();
+							// 解析的时候空白也算进去了，所以可能有5个子节点
+							for(int k=0;k<studentMeta.getLength();k++){
+								if(studentMeta.item(k).getNodeType() == Node.ELEMENT_NODE){									
+									System.out.println(studentMeta.item(k).getNodeName()+" : "+studentMeta.item(k).getTextContent());
+								}
+							}
+						}
 					}
 				}
 			}
@@ -180,4 +188,3 @@ class Student{
     
     
 }
-
