@@ -254,8 +254,35 @@ public class XmlDOMUtils {
     }  
  	
 	//向一个XML文件中添加节点
-	public static void addNodeToXml(Student student){
+	public static void addNodeToXml(String path , Student student) throws Exception{
+		DocumentBuilder builder = getDocumentBuilder();
+		Document doc = builder.parse(path);
+		Element root = doc.getDocumentElement();
 		
+		Element obj = doc.createElement(student.getClass().getSimpleName().toLowerCase());
+		root.appendChild(obj);
+		
+		obj.setAttribute("idcard", student.getIdcard());
+		
+		Element name = doc.createElement("name");
+		name.appendChild(doc.createTextNode(student.getName()));
+		obj.appendChild(name);
+		
+		Element location = doc.createElement("location");
+		location.appendChild(doc.createTextNode(student.getLocation()));
+		obj.appendChild(location);
+		
+		Element examid = doc.createElement("examid");
+		examid.appendChild(doc.createTextNode(student.getExamid()));
+		obj.appendChild(examid);
+		
+		Element grade = doc.createElement("grade");
+		grade.appendChild(doc.createTextNode(student.getGrade()));
+		obj.appendChild(grade);
+		
+		// 生成.xml文档
+		extractXML(doc,"D:/students.xml");
+				
 	}
 	
 	//向一个XML文件中删除节点
@@ -278,7 +305,9 @@ public class XmlDOMUtils {
 		/*List<Student> list = parseXmlToBean("D:/students.xml");
 		System.out.println(list);*/
 		
-		//parseXmlToTree("D:/students.xml");
+		parseXmlToTree("D:/students.xml");
+		
+		//addNodeToXml("D:/students.xml",new Student("07152247","1012","FangJR","ShangHai","60"));
 	}
 
 }
