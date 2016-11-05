@@ -278,7 +278,7 @@ public class XmlDOMUtils {
 		/*List<Student> list = parseXmlToBean("D:/students.xml");
 		System.out.println(list);*/
 		
-		parseXmlToTree("D:/students.xml");
+		//parseXmlToTree("D:/students.xml");
 	}
 
 }
