@@ -187,10 +187,12 @@ public class XmlDOMUtils {
 	}
 	
 	//解析一个XML文件到控制台以树形结构呈现
-	public static void parseXmlToTree(){
+	public static void parseXmlToTree(String Path){
+		DocumentBuilder builder = getDocumentBuilder();
 		
+ 		
 	}
-	
+ 	
 	//向一个XML文件中添加节点
 	public static void addNodeToXml(Student student){
 		
