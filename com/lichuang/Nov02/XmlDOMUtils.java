@@ -286,7 +286,18 @@ public class XmlDOMUtils {
 	}
 	
 	//向一个XML文件中删除节点
-	public static void deleteNodeFromXml(){
+	//此处有点小问题，因为无法定位，所以删除起来寻找起来会比较复杂，所以以后需要有id进行定位
+	public static void deleteNodeFromXml(String path) throws Exception {
+		DocumentBuilder builder = getDocumentBuilder();
+		Document doc = builder.parse(path);
+		//Element root = doc.getDocumentElement();
+		NodeList list = doc.getElementsByTagName("student");
+		for(int i=0;i<list.getLength();i++){
+			if(list.item(i).getNodeType() == Node.ELEMENT_NODE){
+				Node student = list.item(i);
+				
+			}
+		}
 		
 	}
 	
@@ -308,6 +319,8 @@ public class XmlDOMUtils {
 		parseXmlToTree("D:/students.xml");
 		
 		//addNodeToXml("D:/students.xml",new Student("07152247","1012","FangJR","ShangHai","60"));
+		
+		//deleteNodeFromXml("D:/students.xml");
 	}
 
 }
