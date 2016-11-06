@@ -287,17 +287,22 @@ public class XmlDOMUtils {
 	
 	//向一个XML文件中删除节点
 	//此处有点小问题，因为无法定位，所以删除起来寻找起来会比较复杂，所以以后需要有id进行定位
-	public static void deleteNodeFromXml(String path,int index) throws Exception {
+	public static void deleteNodeFromXml(String path,String idcard) throws Exception {
 		DocumentBuilder builder = getDocumentBuilder();
 		Document doc = builder.parse(path);
-		//Element root = doc.getDocumentElement();
+		Element root = doc.getDocumentElement();
 		NodeList list = doc.getElementsByTagName("student");
-		System.out.println(list.getLength());
-		Node node = list.item(index-1);
-		String value = node.getAttributes().item(0).getNodeValue();
-		System.out.println(value);
-		node.getParentNode().removeChild(node); //删除第index位的元素
-		
+		//System.out.println(list.getLength());
+		for(int i=0;i<list.getLength();i++){
+			Node node = list.item(i);
+			if(idcard.equals(node.getAttributes().item(0).getNodeValue())){	
+				//如何删除？
+				node.getParentNode().removeChild(node);
+			}
+			
+		}
+		//String value = node.getAttributes().item(0).getNodeValue();
+		//System.out.println(value);		
 	}
 	
 	
@@ -315,13 +320,13 @@ public class XmlDOMUtils {
 		/*List<Student> list = parseXmlToBean("D:/students.xml");
 		System.out.println(list);*/
 		
-		//parseXmlToTree("D:/students.xml");
+		parseXmlToTree("D:/students.xml");
 		
 		//addNodeToXml("D:/students.xml",new Student("07152247","1012","FangJR","ShangHai","60"));
 		
 		//deleteNodeFromXml("D:/students.xml");
 		
-		deleteNodeFromXml("D:/students.xml", 3);
+		//deleteNodeFromXml("D:/students.xml", "07152247");
 	}
 
 }
