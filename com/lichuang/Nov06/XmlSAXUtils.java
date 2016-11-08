@@ -2,6 +2,8 @@ package com.lichuang.Nov06;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -10,9 +12,16 @@ import java.util.List;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Result;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.sax.SAXTransformerFactory;
+import javax.xml.transform.sax.TransformerHandler;
+import javax.xml.transform.stream.StreamResult;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
+import org.xml.sax.helpers.AttributesImpl;
 import org.xml.sax.helpers.DefaultHandler;
 
 public class XmlSAXUtils {
@@ -26,7 +35,40 @@ public class XmlSAXUtils {
 	public static void main(String[] args) throws Exception {
 		//parseXML("D:/students.xml", new XmlSAXHandler01());
 		//parseXML("D:/students.xml", new XmlSAXHandler02());
-		parseXml03();
+		//parseXml03();
+		//parseXml04();
+		buildXml01();
+	}
+	
+	//生成XML文件，SAX生成XML也是事件主导的，运行一个方法就加一行
+	public static void buildXml01() throws Exception{
+			//创建保存xml的结果流对象
+			Result reultXml = new StreamResult(new FileOutputStream(new File("D:\\user.xml")));
+			//获取sax生产工厂对象实例
+			SAXTransformerFactory saxTransformerFactory = (SAXTransformerFactory) SAXTransformerFactory.newInstance();
+			//获取sax生产处理者对象实例
+			TransformerHandler transformerHandle = saxTransformerFactory.newTransformerHandler();
+			transformerHandle.setResult(reultXml);
+			//获取sax生产器
+			Transformer transformer = transformerHandle.getTransformer();
+			//transformer.setOutputProperty(OutputKeys.ENCODING,"UTF-8");//xml的编码格式
+			transformer.setOutputProperty(OutputKeys.INDENT,"yes");//换行
+			//开始封装document文档对象，这里和解析一样都是成双成对的构造标签
+			transformerHandle.startDocument();
+			AttributesImpl attrImple = new AttributesImpl();
+			transformerHandle.startElement("", "", "Users",attrImple);
+			
+			attrImple.addAttribute("", "", "id", "string", "123");
+			transformerHandle.startElement("", "", "user", attrImple);
+			transformerHandle.characters("这个是用户的信息".toCharArray(), 0, "这个是用户的信息".length());
+			transformerHandle.endElement("", "", "user");
+			
+			transformerHandle.endElement("", "", "Users");
+			//因为没有appendChild等等添加子元素的方法，sax提供的是构造在startElement()和endElement()区间内的标签为包含的节点的父节点
+			transformerHandle.endDocument();
+			
+			System.out.println("xml文档生成成功！");
+			
 	}
 	
 	// 使用SAX的方式解析XML，传入XML文件路径和解析的处理类
@@ -62,7 +104,7 @@ public class XmlSAXUtils {
 		}			
 	}
 	
-	public void parseXml04() throws Exception {
+	public static void parseXml04() throws Exception {
         String xmlPath = "D:/students.xml";  
 			//获取SAX分析器的工厂实例，专门负责创建SAXParser分析器
 			SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
