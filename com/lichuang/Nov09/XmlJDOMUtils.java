@@ -1,7 +1,6 @@
 package com.lichuang.Nov08;
 
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.List;
 
 import org.jdom2.Document;
@@ -19,7 +18,8 @@ public class XmlJDOMUtils {
 		
 		//parseXML(doc);
 		
-		addXmlElement(doc);
+		//addXmlElement(doc);
+		updateXmlElement(doc);
 	}
 	
 	//解析XML文件
@@ -74,21 +74,24 @@ public class XmlJDOMUtils {
 		out.output(doc, new FileWriter("E:/students.xml"));
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	// 修改节点
+	public static void updateXmlElement(Document doc) throws Exception{
+		//1.获得根目录
+		Element root = doc.getRootElement();
+		//2.找到你需要修改的地方
+		for(Element e :root.getChildren("student")){
+			if("07152225".equals(e.getAttribute("idcard").getValue())){
+				Element name = e.getChild("name");
+				//3.按照自己的需求进行修改
+				name.setText("li_ch");
+			}
+		}
+		//4.输出，记得不要输出到原文件，这里似乎是不可以覆盖原文件的
+		XMLOutputter out = new XMLOutputter();
+		out.setFormat(Format.getCompactFormat().setEncoding("GBK"));
+		out.output(doc, new FileWriter("F:/students.xml"));
+	}
+		
 	
 }
+
