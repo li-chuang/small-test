@@ -39,12 +39,16 @@ public class XmlJDOMUtils {
 		}
 	}
 	
+	// 新增节点
 	public static void addXmlElement(Document doc) throws Exception{
+		//1.获取根元素
 		Element root = doc.getRootElement();
 		
+		//2.每个节点都可以new出来，有属性都可以直接设定
 		Element student = new Element("student");
 		student.setAttribute("idcard", "07152259");
 		
+		//3.一般节点也可以设置text值，之后附加到主节点上就可以了
 		Element name = new Element("name");
 		name.setText("ZhangSanFeng");
 		student.addContent(name);
@@ -61,8 +65,10 @@ public class XmlJDOMUtils {
 		grade.setText("75");
 		student.addContent(grade);
 		
+		//4.不要忘了附加到根节点上
 		root.addContent(student);
 		
+		//5.输出，有乱码就记得转码
 		XMLOutputter out = new XMLOutputter();
 		out.setFormat(Format.getCompactFormat().setEncoding("GBK"));
 		out.output(doc, new FileWriter("E:/students.xml"));
