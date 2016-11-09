@@ -1,6 +1,7 @@
 package com.lichuang.Nov08;
 
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 
 import org.jdom2.Document;
@@ -19,7 +20,8 @@ public class XmlJDOMUtils {
 		//parseXML(doc);
 		
 		//addXmlElement(doc);
-		updateXmlElement(doc);
+		//updateXmlElement(doc);
+		deleteXmlElement(doc);
 	}
 	
 	//解析XML文件
@@ -91,7 +93,34 @@ public class XmlJDOMUtils {
 		out.setFormat(Format.getCompactFormat().setEncoding("GBK"));
 		out.output(doc, new FileWriter("F:/students.xml"));
 	}
+	
+	// 删除节点和属性
+	public static void deleteXmlElement(Document doc) throws Exception{
+		Element root = doc.getRootElement();
 		
+		List<Element> list = root.getChildren("student");
+		
+		for(Element student : list){
+			if("07152225".equals(student.getAttribute("idcard").getValue())){
+				student.removeAttribute("idcard");//删除属性
+				student.removeChild("grade");//删除子节点
+			}
+		}
+		
+		for(Element student : list){
+			if(student.getAttribute("idcard")!=null && "07152247".equals(student.getAttribute("idcard").getValue())){
+				root.removeContent(student);//删除指定的节点，
+				// removeChild(String)也可以删除子节点，但毕竟是用标签删除，无法区分各个标签的名字，
+				// root的所有子节点都叫做student
+			}
+		}
+		
+		XMLOutputter out = new XMLOutputter();
+        out.setFormat(Format.getCompactFormat().setEncoding("GBK"));//设置UTF-8编码,理论上来说应该不会有乱码，但是出现了乱码,故设置为GBK
+        out.output(doc, new FileWriter("F:/students.xml")); //写文件
+	}
+	
+	
+
 	
 }
-
