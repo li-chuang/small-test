@@ -1,7 +1,7 @@
 package com.lichuang.Nov08;
 
 import java.io.FileWriter;
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.jdom2.Document;
@@ -13,15 +13,22 @@ import org.jdom2.output.XMLOutputter;
 public class XmlJDOMUtils {
 	
 	public static void main(String[] args) throws Exception {
-		SAXBuilder builder = new SAXBuilder();
+		//SAXBuilder builder = new SAXBuilder();
 		//获取文件节点
-		Document doc = builder.build("D:/students.xml");
+		//Document doc = builder.build("D:/students.xml");
 		
 		//parseXML(doc);
 		
 		//addXmlElement(doc);
 		//updateXmlElement(doc);
-		deleteXmlElement(doc);
+		//deleteXmlElement(doc);
+		
+		List<Student> list = new ArrayList<Student>();
+		list.add(new Student("001", "A123", "LiSi", "BeiJing", "52"));
+		list.add(new Student("002", "A124", "ZhangSan", "HeFei", "91"));
+		list.add(new Student("003", "A125", "LiuMing", "NanJing", "17"));
+		list.add(new Student("004", "A126", "MaLu", "ShangHai", "85"));
+		buildXMLByBean(list);
 	}
 	
 	//解析XML文件
@@ -116,11 +123,117 @@ public class XmlJDOMUtils {
 		}
 		
 		XMLOutputter out = new XMLOutputter();
-        	out.setFormat(Format.getCompactFormat().setEncoding("GBK"));//设置UTF-8编码,理论上来说应该不会有乱码，但是出现了乱码,故设置为GBK
-        	out.output(doc, new FileWriter("F:/students.xml")); //写文件
+        out.setFormat(Format.getCompactFormat().setEncoding("GBK"));//设置UTF-8编码,理论上来说应该不会有乱码，但是出现了乱码,故设置为GBK
+        out.output(doc, new FileWriter("F:/students.xml")); //写文件
 	}
 	
-	
+	//将XML文件解析为对象
+	public static void parseXMLToBean(){
+		
+	}
 
+	//将实例对象构建成XML文件
+	public static void buildXMLByBean(List<Student> students) throws Exception{
+		Document doc =new Document();
+		//这里的doc可以自己生成，不需要用main中现成解析出来的
+		//自己生成doc也挺简单，new一个就可以了
+		Element root = new Element("students");//doc.getRootElement();
+		//root.setName("students");
+		doc.addContent(root);
+		
+		for(Student student : students){
+			Element stuElement = new Element("student");
+			stuElement.setAttribute("idcard", student.getIdcard());
+			
+			Element name = new Element("name");
+			name.setText(student.getName());
+			stuElement.addContent(name);
+			
+			Element examid = new Element("examid");
+			examid.setText(student.getExamid());
+			stuElement.addContent(examid);
+			
+			Element location = new Element("location");
+			location.setText(student.getLocation());
+			stuElement.addContent(location);
+			
+			Element grade = new Element("grade");
+			grade.setText(student.getGrade());
+			stuElement.addContent(grade);
+			
+			root.addContent(stuElement);
+		}
+		
+		XMLOutputter out = new XMLOutputter();
+		out.setFormat(Format.getCompactFormat().setEncoding("GBK"));
+		out.output(doc, new FileWriter("E:/students.xml"));
+		
+	}
 	
 }
+
+class Student {
+	private String idcard;  
+    private String examid;  
+    private String name;  
+    private String location;  
+    private String grade;
+        
+	public Student() {
+	}
+
+	public Student(String idcard, String examid, String name, String location,String grade) {
+		this.idcard = idcard;
+		this.examid = examid;
+		this.name = name;
+		this.location = location;
+		this.grade = grade;
+	}
+
+	public String getIdcard() {
+		return idcard;
+	}
+
+	public void setIdcard(String idcard) {
+		this.idcard = idcard;
+	}
+
+	public String getExamid() {
+		return examid;
+	}
+
+	public void setExamid(String examid) {
+		this.examid = examid;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getGrade() {
+		return grade;
+	}
+
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+
+	@Override
+	public String toString() {
+		return "Student [idcard=" + idcard + ", examid=" + examid + ", name="
+				+ name + ", location=" + location + ", grade=" + grade + "]";
+	}
+}
+
