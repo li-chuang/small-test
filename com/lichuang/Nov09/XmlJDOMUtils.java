@@ -1,11 +1,13 @@
 package com.lichuang.Nov08;
 
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.jdom2.Document;
 import org.jdom2.Element;
+import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
@@ -23,12 +25,14 @@ public class XmlJDOMUtils {
 		//updateXmlElement(doc);
 		//deleteXmlElement(doc);
 		
-		List<Student> list = new ArrayList<Student>();
+		/*List<Student> list = new ArrayList<Student>();
 		list.add(new Student("001", "A123", "LiSi", "BeiJing", "52"));
 		list.add(new Student("002", "A124", "ZhangSan", "HeFei", "91"));
 		list.add(new Student("003", "A125", "LiuMing", "NanJing", "17"));
 		list.add(new Student("004", "A126", "MaLu", "ShangHai", "85"));
-		buildXMLByBean(list);
+		buildXMLByBean(list);*/
+		
+		parseXMLToBean("E:/students.xml");
 	}
 	
 	//解析XML文件
@@ -128,8 +132,23 @@ public class XmlJDOMUtils {
 	}
 	
 	//将XML文件解析为对象
-	public static void parseXMLToBean(){
+	public static void parseXMLToBean(String path) throws Exception{
+		SAXBuilder builder = new SAXBuilder();
+		Document doc = builder.build(path);
+		Element students = doc.getRootElement();
+		List<Element> stuList = students.getChildren("student");
+		List<Student> studentList = new ArrayList<Student>();
+		for(Element stuElement : stuList){
+			Student student = new Student();
+			student.setIdcard(stuElement.getAttributeValue("idcard"));
+			student.setName(stuElement.getChildText("name"));
+			student.setLocation(stuElement.getChildText("location"));
+			student.setExamid(stuElement.getChildText("examid"));
+			student.setGrade(stuElement.getChildText("grade"));
+			studentList.add(student);
+		}
 		
+		System.out.println(studentList);		
 	}
 
 	//将实例对象构建成XML文件
@@ -236,4 +255,6 @@ class Student {
 				+ name + ", location=" + location + ", grade=" + grade + "]";
 	}
 }
+
+
 
