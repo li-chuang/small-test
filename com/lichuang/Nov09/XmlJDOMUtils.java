@@ -116,8 +116,8 @@ public class XmlJDOMUtils {
 		}
 		
 		XMLOutputter out = new XMLOutputter();
-        out.setFormat(Format.getCompactFormat().setEncoding("GBK"));//设置UTF-8编码,理论上来说应该不会有乱码，但是出现了乱码,故设置为GBK
-        out.output(doc, new FileWriter("F:/students.xml")); //写文件
+        	out.setFormat(Format.getCompactFormat().setEncoding("GBK"));//设置UTF-8编码,理论上来说应该不会有乱码，但是出现了乱码,故设置为GBK
+        	out.output(doc, new FileWriter("F:/students.xml")); //写文件
 	}
 	
 	
