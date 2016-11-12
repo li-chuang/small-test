@@ -16,6 +16,7 @@ public class XmlDom4JUtil {
 	public static void main(String[] args) throws Exception {
 		parseXml("E:/students.xml");
 		//addXmlElement("D:/students.xml","E:/students.xml");
+		//updateXmlElement("D:/students.xml","E:/students.xml");
 	}
 
 	//解析xml文件
@@ -77,4 +78,30 @@ public class XmlDom4JUtil {
         writer.close();  
 	}
 	
+	// 修改节点
+	public static void updateXmlElement(String path,String dest) throws Exception{
+		SAXReader reader = new SAXReader();
+		Document doc = reader.read(path);
+			
+		Element root = doc.getRootElement();
+		List<Element> students =  root.elements();
+		for(Element student:students){
+			if("005".equals(student.attributeValue("idcard"))){
+				root.remove(student);
+			}
+		}
+		
+		OutputFormat format = OutputFormat.createPrettyPrint();  
+        // 设置编码  
+        format.setEncoding("UTF-8");  
+        // 创建XMLWriter对象,指定了写出文件及编码格式   
+        XMLWriter writer = new XMLWriter(new OutputStreamWriter(  
+                new FileOutputStream(new File(dest)), "UTF-8"), format);  
+        // 写入  
+        writer.write(doc);  
+        // 立即写入  
+        writer.flush();  
+        // 关闭操作  
+        writer.close();  
+	}
 }
