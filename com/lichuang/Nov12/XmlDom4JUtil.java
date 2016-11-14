@@ -8,7 +8,7 @@ import java.util.List;
 
 import org.dom4j.Attribute;
 import org.dom4j.Document;
-import org.dom4j.DocumentException;
+import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
@@ -22,7 +22,14 @@ public class XmlDom4JUtil {
 		
 		//deleteXmlElement("D:/students.xml","E:/students.xml");
 		
-		parseXMLToBean("D:/students.xml");
+		//parseXMLToBean("D:/students.xml");
+		
+		List<Student> list = new ArrayList<Student>();
+		list.add(new Student("006", "A123", "LiSi", "BeiJing", "52"));
+		list.add(new Student("007", "A124", "ZhangSan", "HeFei", "91"));
+		list.add(new Student("008", "A125", "LiuMing", "NanJing", "17"));
+		list.add(new Student("009", "A126", "MaLu", "ShangHai", "85"));
+		buildXMLByBean(list,"F:/students.xml");
 	}
 
 	//解析xml文件
@@ -156,6 +163,33 @@ public class XmlDom4JUtil {
 			list.add(student);
 		}
 		System.out.println(list);
+	}
+	
+	//将实例对象构建成XML文件
+	public static void buildXMLByBean(List<Student> students,String dest) throws Exception{
+		Document doc = DocumentHelper.createDocument();
+		Element root = doc.addElement("students");
+		for(int i=0;i<students.size();i++){
+			Student student = students.get(i);
+			Element stuElement = root.addElement("student");
+			stuElement.addAttribute("idcard", student.getIdcard());
+			stuElement.addElement("name").setText(student.getName());
+			stuElement.addElement("location").setText(student.getLocation());
+			stuElement.addElement("examid").setText(student.getExamid());
+			stuElement.addElement("grade").setText(student.getGrade());
+		}
+		OutputFormat format = OutputFormat.createPrettyPrint();  
+        // 设置编码  
+        format.setEncoding("UTF-8");  
+        // 创建XMLWriter对象,指定了写出文件及编码格式   
+        XMLWriter writer = new XMLWriter(new OutputStreamWriter(  
+                new FileOutputStream(new File(dest)), "UTF-8"), format);  
+        // 写入  
+        writer.write(doc);  
+        // 立即写入  
+        writer.flush();  
+        // 关闭操作  
+        writer.close();  
 	}
 }
 
