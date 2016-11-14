@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.dom4j.Attribute;
 import org.dom4j.Document;
+import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
@@ -14,9 +15,11 @@ import org.dom4j.io.XMLWriter;
 
 public class XmlDom4JUtil {
 	public static void main(String[] args) throws Exception {
-		parseXml("E:/students.xml");
+		//parseXml("E:/students.xml");
 		//addXmlElement("D:/students.xml","E:/students.xml");
 		//updateXmlElement("D:/students.xml","E:/students.xml");
+		
+		deleteXmlElement("D:/students.xml","E:/students.xml");
 	}
 
 	//解析xml文件
@@ -105,4 +108,30 @@ public class XmlDom4JUtil {
         writer.close();  
 	}
 	
+	// 删除节点和属性
+	public static void deleteXmlElement(String path,String dest) throws Exception{
+		SAXReader reader = new SAXReader(); 
+		Document doc = reader.read(path);
+		
+		Element students = doc.getRootElement();
+		List<Element> list = students.elements();
+		for(Element stuElement :list){
+			if("005".equals(stuElement.attributeValue("idcard"))){
+				students.remove(stuElement);
+			}
+		}
+		
+		OutputFormat format = OutputFormat.createPrettyPrint();  
+        // 设置编码  
+        format.setEncoding("UTF-8");  
+        // 创建XMLWriter对象,指定了写出文件及编码格式   
+        XMLWriter writer = new XMLWriter(new OutputStreamWriter(  
+                new FileOutputStream(new File(dest)), "UTF-8"), format);  
+        // 写入  
+        writer.write(doc);  
+        // 立即写入  
+        writer.flush();  
+        // 关闭操作  
+        writer.close();  
+	}
 }
