@@ -3,6 +3,7 @@ package com.lichuang.Nov012;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.dom4j.Attribute;
@@ -19,7 +20,9 @@ public class XmlDom4JUtil {
 		//addXmlElement("D:/students.xml","E:/students.xml");
 		//updateXmlElement("D:/students.xml","E:/students.xml");
 		
-		deleteXmlElement("D:/students.xml","E:/students.xml");
+		//deleteXmlElement("D:/students.xml","E:/students.xml");
+		
+		parseXMLToBean("D:/students.xml");
 	}
 
 	//解析xml文件
@@ -133,5 +136,90 @@ public class XmlDom4JUtil {
         writer.flush();  
         // 关闭操作  
         writer.close();  
+	}
+	
+	//将XML文件解析为对象
+	public static void parseXMLToBean(String path) throws Exception{
+		SAXReader reader = new SAXReader();
+		Document doc = reader.read(path);
+		
+		Element students = doc.getRootElement();
+		List<Element> stuElement = students.elements();
+		List<Student> list = new ArrayList<Student>();
+		for(Element element :stuElement){
+			Student student = new Student();
+			student.setIdcard(element.attributeValue("idcard"));
+			student.setName(element.elementText("name"));
+			student.setLocation(element.elementText("location"));
+			student.setExamid(element.elementText("examid"));
+			student.setGrade(element.elementText("grade"));
+			list.add(student);
+		}
+		System.out.println(list);
+	}
+}
+
+class Student {
+	private String idcard;  
+    private String examid;  
+    private String name;  
+    private String location;  
+    private String grade;
+        
+	public Student() {
+	}
+
+	public Student(String idcard, String examid, String name, String location,String grade) {
+		this.idcard = idcard;
+		this.examid = examid;
+		this.name = name;
+		this.location = location;
+		this.grade = grade;
+	}
+
+	public String getIdcard() {
+		return idcard;
+	}
+
+	public void setIdcard(String idcard) {
+		this.idcard = idcard;
+	}
+
+	public String getExamid() {
+		return examid;
+	}
+
+	public void setExamid(String examid) {
+		this.examid = examid;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getGrade() {
+		return grade;
+	}
+
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+
+	@Override
+	public String toString() {
+		return "Student [idcard=" + idcard + ", examid=" + examid + ", name="
+				+ name + ", location=" + location + ", grade=" + grade + "]";
 	}
 }
