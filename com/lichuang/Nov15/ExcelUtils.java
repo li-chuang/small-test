@@ -74,7 +74,29 @@ public class ExcelUtils {
 		HSSFSheet sheet = workbook.getSheetAt(0);
 		HSSFRow row = sheet.getRow(0);
 		HSSFCell cell = row.getCell(0);
-		System.out.println(cell.getStringCellValue());		
+		//System.out.println(cell.getStringCellValue());		
+		int rowNum = sheet.getLastRowNum();//获得行数
+		//int colNum = row.getPhysicalNumberOfCells();//获得列数
+		List<Student> list = new ArrayList<Student>();
+		for(int i=0;i<rowNum;i++){
+			row = sheet.getRow(i+1);
+			Student student = new Student();
+			
+			cell = row.getCell(0);
+			student.setId(cell.getStringCellValue());
+			
+			cell = row.getCell(1);
+			student.setName(cell.getStringCellValue());
+			
+			cell = row.getCell(2);
+			student.setAge(cell.getStringCellValue());
+			
+			cell = row.getCell(3);
+			student.setAddress(cell.getStringCellValue());
+			
+			list.add(student);
+		}
+		System.out.println(list);
 	}
 
 	// 将excel文件导出
@@ -138,7 +160,10 @@ class Student{
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
-	
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", name=" + name + ", age=" + age
+				+ ", address=" + address + "]";
+	}
 	
 }
