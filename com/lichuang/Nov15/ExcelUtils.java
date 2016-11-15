@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -13,11 +15,17 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 public class ExcelUtils {
 	public static void main(String[] args) {
-		createExcel(new Student(),"F:/text.xls");
+		List<Student> list = new ArrayList<Student>();
+		list.add(new Student("001", "zhangsan", "100", "beijing"));
+		list.add(new Student("002", "lisi", "77", "shanghai"));
+		list.add(new Student("003", "wangwu", "85", "nanjing"));
+		list.add(new Student("004", "zhaoliu", "60", "wuhan"));
+		list.add(new Student("005", "qianqi", "98", "chongqin"));
+		createExcel(list,"F:/text.xls");
 	}
 
 	// 生成一个Excel文件
-	public static void createExcel(Student student,String path) {
+	public static void createExcel(List<Student> list,String path) {
 		HSSFWorkbook wb = new HSSFWorkbook();
 
 		HSSFSheet sheet = wb.createSheet("第一个sheet");
@@ -35,6 +43,23 @@ public class ExcelUtils {
 		
 		cell = row.createCell(3);
 		cell.setCellValue("地址");
+		
+		for(int i=0;i<list.size();i++){
+			Student student = list.get(i);
+			HSSFRow hssfRow = sheet.createRow(i+1);
+			
+			HSSFCell hssfCell = hssfRow.createCell(0);
+			hssfCell.setCellValue(student.getId());
+			
+			hssfCell = hssfRow.createCell(1);
+			hssfCell.setCellValue(student.getName());
+			
+			hssfCell = hssfRow.createCell(2);
+			hssfCell.setCellValue(student.getAge());
+			
+			hssfCell = hssfRow.createCell(3);
+			hssfCell.setCellValue(student.getAddress());		
+		}
 
 		exportFile(wb, path);
 	}
