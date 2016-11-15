@@ -2,8 +2,11 @@ package com.lichuang.Nov15;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,14 +17,16 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 public class ExcelUtils {
-	public static void main(String[] args) {
-		List<Student> list = new ArrayList<Student>();
-		list.add(new Student("001", "zhangsan", "100", "beijing"));
-		list.add(new Student("002", "lisi", "77", "shanghai"));
-		list.add(new Student("003", "wangwu", "85", "nanjing"));
-		list.add(new Student("004", "zhaoliu", "60", "wuhan"));
-		list.add(new Student("005", "qianqi", "98", "chongqin"));
-		createExcel(list,"F:/text.xls");
+	public static void main(String[] args) throws Exception {
+//		List<Student> list = new ArrayList<Student>();
+//		list.add(new Student("001", "zhangsan", "100", "beijing"));
+//		list.add(new Student("002", "lisi", "77", "shanghai"));
+//		list.add(new Student("003", "wangwu", "85", "nanjing"));
+//		list.add(new Student("004", "zhaoliu", "60", "wuhan"));
+//		list.add(new Student("005", "qianqi", "98", "chongqin"));
+//		createExcel(list,"F:/text.xls");
+		
+		parseExcel();
 	}
 
 	// 生成一个Excel文件
@@ -62,6 +67,14 @@ public class ExcelUtils {
 		}
 
 		exportFile(wb, path);
+	}
+	
+	public static void parseExcel() throws Exception {
+		HSSFWorkbook workbook = new HSSFWorkbook(new FileInputStream("F:/text.xls"));
+		HSSFSheet sheet = workbook.getSheetAt(0);
+		HSSFRow row = sheet.getRow(0);
+		HSSFCell cell = row.getCell(0);
+		System.out.println(cell.getStringCellValue());		
 	}
 
 	// 将excel文件导出
