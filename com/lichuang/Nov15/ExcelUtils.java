@@ -3,10 +3,8 @@ package com.lichuang.Nov15;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +14,12 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
+
+/**
+ * 这里对excel的处理还是比较简单的，只完成了最基本的生成和解析，如果要使代码具有通用性，可以使用反射进行赋值。
+ * 这算是一个点吧，以后如果有时间再改进，现在就到这了，用的地方也不多，和前端js结合起来一起用好像常见一些。
+ *
+ */
 public class ExcelUtils {
 	public static void main(String[] args) throws Exception {
 //		List<Student> list = new ArrayList<Student>();
@@ -26,7 +30,7 @@ public class ExcelUtils {
 //		list.add(new Student("005", "qianqi", "98", "chongqin"));
 //		createExcel(list,"F:/text.xls");
 		
-		parseExcel();
+		parseExcel("F:/text.xls");
 	}
 
 	// 生成一个Excel文件
@@ -69,8 +73,9 @@ public class ExcelUtils {
 		exportFile(wb, path);
 	}
 	
-	public static void parseExcel() throws Exception {
-		HSSFWorkbook workbook = new HSSFWorkbook(new FileInputStream("F:/text.xls"));
+	// 解析excel文件
+	public static void parseExcel(String path) throws Exception {
+		HSSFWorkbook workbook = new HSSFWorkbook(new FileInputStream(path));
 		HSSFSheet sheet = workbook.getSheetAt(0);
 		HSSFRow row = sheet.getRow(0);
 		HSSFCell cell = row.getCell(0);
