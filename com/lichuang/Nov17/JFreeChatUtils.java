@@ -25,15 +25,25 @@ import org.jfree.data.general.DatasetUtilities;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
 
+
+/**
+ * JFreeChart生成图片的形式也算很偏门了，其实更正常的情况是用Servlet或者structs等在前端生成
+ *
+ */
 public class JFreeChatUtils {
 	
-	/*public static void main(String[] args) {
-		pieChart("测试", getDataPieSetByUtil(new double[]{1.1,1.2},new String[]{"A","B"}), new String[]{"C","D"});
-			
-	}*/
+	public static void main(String[] args) {
+		PieDataset dataset = getDataPieSetByUtil(new double[]{50.0,52.0,92.0}, new String[]{"A","B","C"});
+		try {
+			FileOutputStream fos = new FileOutputStream("e:/abc.png");
+			ChartUtilities.writeChartAsPNG(fos, new JFreeChatUtils().pieChart("各地汽车销量",dataset,new String[]{"a","b"}), 800, 600);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	//饼状图
-	public static JFreeChart pieChart(String title, PieDataset dataset, String[] pieKeys){
+	public JFreeChart pieChart(String title, PieDataset dataset, String[] pieKeys){
 		JFreeChart chart = ChartFactory.createPieChart3D(title, dataset, true, true, false);
 		
 		//关闭抗锯齿，是字体清晰
@@ -186,7 +196,7 @@ public class JFreeChatUtils {
 		
 		return chart;
 	}
-	public static void main(String args[]){
+	/*public static void main(String args[]){
 		double [][] data = new double[][]{{533,214,614,542,724},{462,836,345,854,224},{245,614,751,332,456}};
 		String[] rowKeys = {"宝马","奔驰","大众"};
 		String[] columnKeys = {"北京", "上海", "广州", "成都", "深圳"};
@@ -195,9 +205,8 @@ public class JFreeChatUtils {
 			FileOutputStream fos = new FileOutputStream("e:/abc.png");
 			ChartUtilities.writeChartAsPNG(fos, new JFreeChatUtils().makeLineAndShapeChart("各地汽车销量", "城市", "销量", dataset), 800, 600);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-}
+	}*/
 	
 }
