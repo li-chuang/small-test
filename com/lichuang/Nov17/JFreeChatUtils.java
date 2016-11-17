@@ -21,13 +21,13 @@ import org.jfree.chart.plot.PiePlot3D;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.general.DatasetUtilities;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
 
 
 /**
  * JFreeChart生成图片的形式也算很偏门了，其实更正常的情况是用Servlet或者structs等在前端生成
+ * 等到结合前端的知识再弄吧
  *
  */
 public class JFreeChatUtils {
@@ -207,6 +207,6 @@ public class JFreeChatUtils {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}*/
+}*/
 	
 }
