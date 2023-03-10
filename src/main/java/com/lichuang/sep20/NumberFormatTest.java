@@ -1,4 +1,4 @@
-package com.lichuang.Sep20;
+package com.lichuang.sep20;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;

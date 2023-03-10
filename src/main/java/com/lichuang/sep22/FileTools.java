@@ -1,4 +1,4 @@
-package com.lichuang.Sep22;
+package com.lichuang.sep22;
 
 import java.io.File;
 import java.io.FileInputStream;

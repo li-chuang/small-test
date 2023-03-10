@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d1d134e5-7b26-4979-87b4-6090e0e558f3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com/lichuang/Nov02/XmlDOMUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lichuang/Nov02/XmlDOMUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com/lichuang/Nov06/Attribute.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lichuang/Nov06/Attribute.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com/lichuang/Nov06/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lichuang/Nov06/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com/lichuang/Nov06/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lichuang/Nov06/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com/lichuang/Nov06/XmlSAXUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lichuang/Nov06/XmlSAXUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com/lichuang/Nov09/XmlJDOMUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lichuang/Nov09/XmlJDOMUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com/lichuang/Nov12/XmlDom4JUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lichuang/Nov12/XmlDom4JUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com/lichuang/Nov15/ExcelUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lichuang/Nov15/ExcelUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com/lichuang/Nov17/JFreeChatUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lichuang/Nov17/JFreeChatUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com/lichuang/Oct12/PatternUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lichuang/Oct12/PatternUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com/lichuang/Oct16/NIOUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lichuang/Oct16/NIOUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com/lichuang/Oct20/IOUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lichuang/Oct20/IOUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com/lichuang/Oct21/DownloadUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lichuang/Oct21/DownloadUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com/lichuang/Oct21/DownloadUtilsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lichuang/Oct21/DownloadUtilsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com/lichuang/Oct26/ConnectionUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lichuang/Oct26/ConnectionUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com/lichuang/Oct29/JsonUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lichuang/Oct29/JsonUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com/lichuang/Oct31/GsonUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lichuang/Oct31/GsonUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com/lichuang/sep20/NumberFormatTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lichuang/sep20/NumberFormatTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com/lichuang/sep22/FileTools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lichuang/sep22/FileTools.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com/lichuang/sep25/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lichuang/sep25/FileUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com/lichuang/sep27/JsonParse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lichuang/sep27/JsonParse.java" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/lichuang/Nov09/XmlJDOMUtils.java">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/lichuang/Oct21/DownloadUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1254">
+              <caret line="39" column="32" selection-start-line="39" selection-start-column="32" selection-end-line="39" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/lichuang/sep27/JsonParse.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-264" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/lichuang/sep20/NumberFormatTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-176">
+              <caret line="9" column="2" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/lichuang/Oct26/ConnectionUtils.java">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="110">
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/lichuang/Nov15/ExcelUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="89">
+              <caret line="148" column="5" lean-forward="true" selection-start-line="148" selection-start-column="5" selection-end-line="148" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/lichuang/Oct20/IOUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="44">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/main/java/com/lichuang/Nov15/ExcelUtils.java" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="C:\Maven\maven_repository" />
+        <option name="mavenHome" value="C:/Maven/apache-maven-3.6.1" />
+        <option name="userSettingsFile" value="C:\Maven\apache-maven-3.6.1\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+        <option name="jdkForImporter" value="1.8" />
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="small-test" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="MavenRunner">
+    <option name="jreName" value="1.8" />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="8" />
+    <option name="y" value="2" />
+    <option name="width" value="1800" />
+    <option name="height" value="910" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="small-test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="small-test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="small-test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="small-test" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="small-test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="small-test" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="small-test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="small-test" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="small-test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="small-test" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="lichuang" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="small-test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="small-test" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="lichuang" type="462c0819:PsiDirectoryNode" />
+              <item name="Nov15" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="small-test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="small-test" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="lichuang" type="462c0819:PsiDirectoryNode" />
+              <item name="Nov15" type="462c0819:PsiDirectoryNode" />
+              <item name="ExcelUtils.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
+            <path>
+              <item name="small-test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="small-test" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="lichuang" type="462c0819:PsiDirectoryNode" />
+              <item name="Oct12" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="small-test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="small-test" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="lichuang" type="462c0819:PsiDirectoryNode" />
+              <item name="Oct16" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="small-test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="small-test" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="lichuang" type="462c0819:PsiDirectoryNode" />
+              <item name="Oct20" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="small-test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="small-test" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="lichuang" type="462c0819:PsiDirectoryNode" />
+              <item name="Oct26" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="small-test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+            <path>
+              <item name="small-test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.build" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d1d134e5-7b26-4979-87b4-6090e0e558f3" name="Default Changelist" comment="" />
+      <created>1678458007895</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1678458007895</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="7" y="2" width="1440" height="728" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="UI Designer" />
+      <window_info id="Capture Tool" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2496382" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Maven" visible="true" weight="0.1917511" />
+      <window_info anchor="right" id="ASM" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/lichuang/Nov09/XmlJDOMUtils.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/lichuang/Oct21/DownloadUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1254">
+          <caret line="39" column="32" selection-start-line="39" selection-start-column="32" selection-end-line="39" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/lichuang/sep27/JsonParse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-264" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/lichuang/sep20/NumberFormatTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-176">
+          <caret line="9" column="2" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/lichuang/Oct26/ConnectionUtils.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/lichuang/Oct20/IOUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/lichuang/Nov15/ExcelUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="148" column="5" lean-forward="true" selection-start-line="148" selection-start-column="5" selection-end-line="148" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

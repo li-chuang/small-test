@@ -1,4 +1,4 @@
-package com.lichuang.Sep25;
+package com.lichuang.sep25;
 
 import java.io.BufferedReader;
 import java.io.File;
